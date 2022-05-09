@@ -1,13 +1,17 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import './vendor/normalize.css';
+@import './vendor/font.css';
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@import './components/Header/Header.css';
+@import "components/Header/__button-menu/header__button-menu.css";
+@import "components/Header/__link/header__link.css";
+
+@import './components/Navigation/Navigation.css';
+@import "./components/Navigation/__top/navigation__top.css";
+@import "./components/Navigation/__link/navigation__link.css";
+/*@import "./components/Navigation/__link/_active/navigation__link_active.css";*/
+@import "./components/Navigation/__items/navigation__items.css";
+@import "./components/Navigation/__items/_device/navigation__items_device_tablet.css";
+@import "./components/Navigation/__button/navigation__button.css";
+@import "./components/Navigation/__button-logo/navigation__button-text.css";
+@import "./components/Navigation/__button-text/navigation__button-logo.css";
+@import "./components/Navigation/__button-background-logo/navigation__button-background-logo.css";

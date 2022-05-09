@@ -1,0 +1,12 @@
+.navigation__link {
+  text-decoration: none;
+  color: #000000;
+  margin-right: 16px;
+  font: normal 400 13px/18px Inter, Arial, sans-serif;
+}
+
+.navigation__link.active {
+  font: normal 500 13px/18px Inter, Arial, sans-serif;
+}
+/* пытался сделать activeClassName: 'navigation__link_active', но браузер ставит/подставляет всегда
+сlassName: 'navigation__link active'. Между link и active пустота появляется */
