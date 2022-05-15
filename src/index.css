@@ -31,3 +31,41 @@
 
 @import './components/Promo/Promo.css';
 @import './components/Promo/__title/promo__title.css';
+
+@import './components/AboutProject/AboutProject.css';
+@import './components/AboutProject/__title/aboutproject__title.css';
+@import './components/AboutProject/__content/aboutproject__content.css';
+@import './components/AboutProject/__item/aboutproject__item.css';
+@import './components/AboutProject/__item-description/aboutproject__item-description.css';
+@import './components/AboutProject/__item-title/aboutproject__item-title.css';
+@import './components/AboutProject/__period/aboutproject__period.css';
+@import './components/AboutProject/__period/_theme/aboutproject__period_theme_black.css';
+@import './components/AboutProject/__period/_theme/aboutproject__period_theme_gray.css';
+@import './components/AboutProject/__period/aboutproject__period.css';
+@import './components/AboutProject/__period-title/aboutproject__period-title.css';
+@import './components/AboutProject/__period-title/_theme/aboutproject__period-title_theme_gray.css';
+@import './components/AboutProject/__period-description/aboutproject__period-description.css';
+
+@import './components/Techs/Techs.css';
+@import './components/Techs/__title/techs__title.css';
+@import './components/Techs/__tech-title/techs__tech-title.css';
+@import './components/Techs/__tech-description/techs__tech-description.css';
+@import './components/Techs/__items/techs__items.css';
+@import './components/Techs/__item/techs__item.css';
+@import './components/Techs/__item-title/techs__item-title.css';
+
+@import './components/AboutMe/AboutMe.css';
+@import './components/AboutMe/__title/about-me__title.css';
+@import './components/AboutMe/__content/about-me__content.css';
+@import './components/AboutMe/__profile-img/about-me__profile-img.css';
+@import './components/AboutMe/__profile-description/about-me__profile-description.css';
+@import './components/AboutMe/__profile-title/about-me__profile-title.css';
+@import './components/AboutMe/__profession/about-me__profession.css';
+@import './components/AboutMe/__profile-detail/about-me__profile-detail.css';
+@import './components/AboutMe/__profile-links/about-me__profile-links.css';
+@import './components/AboutMe/__profile-link/about-me__profile-link.css';
+
+@import './components/Portfolio/Portfolio.css';
+@import './components/Portfolio/__title/portfolio__title.css';
+@import './components/Portfolio/__links/portfolio__links.css';
+@import './components/Portfolio/__link/portfolio__link.css';

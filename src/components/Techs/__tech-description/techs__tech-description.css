@@ -1,0 +1,21 @@
+.techs__tech-description {
+  max-width: 460px;
+  margin: 26px auto 0 auto;
+  text-align: center;
+  font: normal 400 14px/20px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__tech-description {
+    margin-top: 22px;
+    font: normal 400 12px/18px Inter, Arial, sans-serif;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__tech-description {
+    margin-top: 24px;
+    font: normal 400 11px/16px Inter, Arial, sans-serif;
+  }
+}

@@ -1,0 +1,11 @@
+.aboutproject__period-title {
+  margin: 0;
+  font: normal 400 14px/17px Inter, Arial, sans-serif;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__period-title {
+    font: normal 400 11px/13px Inter, Arial, sans-serif;
+  }
+}

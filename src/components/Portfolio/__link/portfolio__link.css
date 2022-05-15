@@ -1,0 +1,30 @@
+.portfolio__link {
+  text-decoration: none;
+  color: #000000;
+  font: normal 400 30px/50px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+  margin: 0 6px 20px 0;
+  padding-bottom: 19px;
+  border-bottom: 1px solid #E8E8E8;
+  background: url("../../../images/arrow.svg") right 18px/18px 18px no-repeat;
+}
+
+.portfolio__link:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio__link {
+    font: normal 400 28px/50px Inter, Arial, sans-serif;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio__link {
+    margin-right: 4px;
+    font: normal 400 18px/28px Inter, Arial, sans-serif;
+    background: url("../../../images/arrow.svg") right 6px/10px 16px no-repeat;
+  }
+}

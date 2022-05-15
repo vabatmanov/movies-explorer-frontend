@@ -1,0 +1,29 @@
+.about-me__profile-description {
+  margin: 26px 0 0;
+  font: normal 400 14px/22px Inter, Arial, sans-serif;
+}
+
+.about-me__profile-description:first-of-type {
+  margin-top: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__profile-description {
+    margin-top: 20px;
+    font: normal 400 12px/18px Inter, Arial, sans-serif;
+  }
+
+  .about-me__profile-description:first-of-type {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__profile-description {
+    font: normal 400 11px/16px Inter, Arial, sans-serif;
+  }
+
+  .about-me__profile-description:first-of-type {
+    margin-top: 20px;
+  }
+}

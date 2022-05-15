@@ -1,0 +1,18 @@
+.aboutproject__item-description {
+  margin: 26px 0 0 0;
+  font: normal 400 14px/20px Inter, Arial, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutproject__item-description {
+    margin-top: 22px;
+    font: normal 400 12px/18px Inter, Arial, sans-serif;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__item-description {
+    margin-top: 16px;
+    font: normal 400 11px/16px Inter, Arial, sans-serif;
+  }
+}

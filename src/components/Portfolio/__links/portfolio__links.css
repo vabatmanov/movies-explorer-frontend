@@ -1,0 +1,11 @@
+.portfolio__links {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio__links {
+    margin-top: 40px;
+  }
+}

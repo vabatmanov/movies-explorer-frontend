@@ -1,0 +1,11 @@
+.techs__item-title {
+  margin: 0;
+  font: normal 400 14px/17px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__item-title {
+    font: normal 400 12px/15px Inter, Arial, sans-serif;
+  }
+}
