@@ -8,8 +8,16 @@
   background: url("../../../images/button-menu.svg") center center no-repeat;
 }
 
-@media screen /*and (min-width: 429px)*/ and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .header__button-menu {
     display: block;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header__button-menu {
+    width: 40px;
+    height: 43px;
+    background-size: 22px 21px;
   }
 }

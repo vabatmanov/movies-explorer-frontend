@@ -1,0 +1,8 @@
+.navigation_theme_side-menu {
+  display: flex;
+  margin: 0 0 90px 0;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+}

@@ -1,0 +1,25 @@
+.promo {
+  min-height: 560px;
+  padding: 50px 70px 0 70px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  background: url("../../images/promo_image.svg") #F3C1F8 87.5% 256px/722px 244px no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    min-height: 844px;
+    padding: 300px 44px 0 44px;
+    background: url("../../images/promo_image.svg") #F3C1F8 center 544px/680px 230px no-repeat;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .promo {
+    min-height: 630px;
+    padding: 183px 10px 0 10px;
+    background-position: center 368px;
+  }
+}
+

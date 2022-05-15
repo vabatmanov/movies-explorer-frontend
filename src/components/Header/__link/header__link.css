@@ -11,7 +11,7 @@
 
 .header__link:last-of-type {
   display: flex;
-  width: 78px;
+  width: 76px;
   height: 32px;
   color: #FFFFFF;
   margin-right: 0;
@@ -19,4 +19,16 @@
   border-radius: 3px;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: 320px) {
+  .header__link {
+    font: normal 500 10px/16px Inter, Arial, sans-serif;
+    margin-right: 14px;
+  }
+
+  .header__link:last-of-type {
+    width: 54px;
+    height: 26px;
+  }
 }

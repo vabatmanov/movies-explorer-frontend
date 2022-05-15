@@ -4,6 +4,6 @@
 
 @media screen and (max-width: 768px) {
   .navigation__items_device_tablet {
-    display: inline;
+    display: list-item;
   }
 }

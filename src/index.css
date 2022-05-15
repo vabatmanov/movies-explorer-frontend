@@ -2,16 +2,32 @@
 @import './vendor/font.css';
 
 @import './components/Header/Header.css';
-@import "components/Header/__button-menu/header__button-menu.css";
+@import "components/Header/_theme/Header_theme_pink.css";
 @import "components/Header/__link/header__link.css";
+@import "components/Header/__button-menu/header__button-menu.css";
 
 @import './components/Navigation/Navigation.css';
+@import 'components/Navigation/_theme/navigation_theme_side-menu.css';
 @import "./components/Navigation/__top/navigation__top.css";
+@import "./components/Navigation/__top/_theme/navigation__top_theme_side-menu.css";
 @import "./components/Navigation/__link/navigation__link.css";
-/*@import "./components/Navigation/__link/_active/navigation__link_active.css";*/
+@import "./components/Navigation/__link/_theme/navigation__link_theme_side-menu.css";
+@import "components/Navigation/__link/_active/navigation__link_active_default.css";
+@import "./components/Navigation/__link/_active/navigation__link_active_side-menu.css";
 @import "./components/Navigation/__items/navigation__items.css";
+@import "./components/Navigation/__items/_theme/navigation__items_theme_side-menu.css";
 @import "./components/Navigation/__items/_device/navigation__items_device_tablet.css";
 @import "./components/Navigation/__button/navigation__button.css";
 @import "./components/Navigation/__button-logo/navigation__button-text.css";
 @import "./components/Navigation/__button-text/navigation__button-logo.css";
 @import "./components/Navigation/__button-background-logo/navigation__button-background-logo.css";
+
+@import './components/SideMenu/SideMenu.css';
+@import './components/SideMenu/__content/side-menu__content.css';
+@import './components/SideMenu/__button-close/side-menu__button-close.css';
+@import './components/SideMenu/_opened/side-menu_opened.css';
+
+@import './components/Main/Main.css';
+
+@import './components/Promo/Promo.css';
+@import './components/Promo/__title/promo__title.css';

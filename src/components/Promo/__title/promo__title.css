@@ -1,0 +1,20 @@
+.promo__title {
+  font: normal 400 40px/52px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+  max-width: 626px;
+  margin: 0 0 102px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .promo__title {
+    margin: 0 auto 140px auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .promo__title {
+    margin: 0 auto 60px auto;
+    font: normal 400 31px/39px Inter, Arial, sans-serif;
+  }
+}

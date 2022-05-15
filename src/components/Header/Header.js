@@ -1,16 +1,22 @@
 import React  from 'react';
-import Logo from "../../images/logo/logo.svg";
+import Logo from '../../images/logo/logo.svg';
 import Navigation from '../Navigation/Navigation'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from 'react-router-dom';
 
 function Header(props) {
+  const location = useLocation();
+
+  function handleSideMenuOpen() {
+    props.onSideMenuOpen();
+  }
+
   return (
-    <header className="header">
-      <img className="logo" src={Logo}  alt="Логотип" />
+    <header className={`header ${(props.loggedIn && location.pathname !== '/')?'':'header_theme_pink'}`}>
+    <img className='logo' src={Logo}  alt='Логотип' />
       {props.loggedIn ? (
           <>
             <Navigation />
-            <button className='header__button-menu'></button>
+            <button className='header__button-menu' type="button" onClick={handleSideMenuOpen}></button>
           </>
         )
       :(<>

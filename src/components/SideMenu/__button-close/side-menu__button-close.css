@@ -1,0 +1,17 @@
+.side-menu__button-close {
+  border: none;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  background: url("../../../images/close.svg") center center/100% 100% no-repeat;
+  margin: 29px 29px 112px auto;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .side-menu__button-close {
+    margin: 20px 20px 106px auto;
+  }
+}
+
