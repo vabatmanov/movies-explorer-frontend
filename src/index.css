@@ -69,3 +69,9 @@
 @import './components/Portfolio/__title/portfolio__title.css';
 @import './components/Portfolio/__links/portfolio__links.css';
 @import './components/Portfolio/__link/portfolio__link.css';
+
+@import './components/Footer/Footer.css';
+@import './components/Footer/__title/footer__title.css';
+@import './components/Footer/__links/footer__links.css';
+@import './components/Footer/__link/footer__link.css';
+@import './components/Footer/__year/footer__year.css';

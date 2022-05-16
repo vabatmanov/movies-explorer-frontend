@@ -1,0 +1,18 @@
+.footer {
+  padding: 79px 70px 0;
+  min-height: 172px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 79px 30px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding: 79px 10px 0;
+    min-height: 270px;
+  }
+}
