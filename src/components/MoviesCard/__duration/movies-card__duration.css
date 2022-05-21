@@ -1,0 +1,7 @@
+.movies-card__duration {
+  font: normal 400 11px/13px Inter, Arial, sans-serif;
+  color: #A0A0A0;
+  margin: 0;
+  grid-column: 1/2;
+  grid-row: 3/4;
+}

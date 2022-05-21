@@ -1,0 +1,13 @@
+.movies-card__like {
+  width: 30px;
+  height: 30px;
+  background: url('../../../images/button-like/like.svg') #F9F9F9 center center no-repeat;
+  cursor: pointer;
+  border-radius: 36px;
+  border: none;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  align-self: center;
+}
+
+

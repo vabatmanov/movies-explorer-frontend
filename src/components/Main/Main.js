@@ -9,11 +9,11 @@ import Footer from "../Footer/Footer";
 function Main() {
   return (
     <main className='main'>
-      {/*<Promo/>*/}
-      {/*<AboutProject/>*/}
-      {/*<Techs/>*/}
-      {/*<AboutMe/>*/}
-      {/*<Portfolio/>*/}
+      <Promo/>
+      <AboutProject/>
+      <Techs/>
+      <AboutMe/>
+      <Portfolio/>
       <Footer/>
     </main>
   );

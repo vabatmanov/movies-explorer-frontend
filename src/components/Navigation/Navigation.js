@@ -12,7 +12,7 @@ function Navigation({isTheme}) {
           <NavLink className={setActiveLink}  to='/'>Главная</NavLink>
         </li>
         <li className={`navigation__items ${isTheme && isTheme.__items}`}>
-          <NavLink className={setActiveLink} to='/movie'>Фильмы</NavLink>
+          <NavLink className={setActiveLink} to='/movies'>Фильмы</NavLink>
         </li>
         <li className={`navigation__items ${isTheme && isTheme.__items}`}>
           <NavLink className={setActiveLink} to='/saved-movies'>Сохранённые фильмы</NavLink>

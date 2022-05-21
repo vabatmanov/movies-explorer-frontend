@@ -75,3 +75,19 @@
 @import './components/Footer/__links/footer__links.css';
 @import './components/Footer/__link/footer__link.css';
 @import './components/Footer/__year/footer__year.css';
+
+@import './components/Preloader/Preloader.css';
+
+@import './components/Movies/Movies.css';
+/*@import './components/Movies/';*/
+@import './components/MoviesCardList/MoviesCardList.css';
+
+@import './components/MoviesCard/MoviesCard.css';
+@import './components/MoviesCard/__title/movies-card__title.css';
+@import './components/MoviesCard/__image/movies-card__image.css';
+@import './components/MoviesCard/__like/movies-card__like.css';
+@import './components/MoviesCard/__like/_status/movies-card__like_status_liked.css';
+@import './components/MoviesCard/__like/_status/movies-card__like_status_disliked.css';
+@import './components/MoviesCard/__duration/movies-card__duration.css';
+@import './components/MoviesCard/__header/movies-card__header.css';
+@import './components/MoviesCard/__logo-like/movies-card__logo-like.css';
