@@ -1,0 +1,11 @@
+.error__title {
+  font: normal 400 140px/169px Inter, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .error__title {
+    font: normal 400 80px/97px Inter, Arial, sans-serif;
+  }
+}

@@ -18,7 +18,7 @@ function Navigation({isTheme}) {
           <NavLink className={setActiveLink} to='/saved-movies'>Сохранённые фильмы</NavLink>
         </li>
       </ul>
-      <button className='navigation__button'>
+      <button className='navigation__button' type='button'>
         <p className='navigation__button-text'>Аккаунт</p>
         <figure className='navigation__button-background-logo'>
           <img className='navigation__button-logo' src={ProfileLogo} alt="Логотип аккаунта"/>

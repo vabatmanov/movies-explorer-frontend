@@ -104,3 +104,16 @@
 @import './components/MoviesCard/__duration/movies-card__duration.css';
 @import './components/MoviesCard/__header/movies-card__header.css';
 @import './components/MoviesCard/__logo-like/movies-card__logo-like.css';
+
+@import './components/Profile/Profile.css';
+@import './components/Profile/__input/profile__input.css';
+@import './components/Profile/__button/profile__button.css';
+@import './components/Profile/__title/profile__title.css';
+@import './components/Profile/__link/profile__link.css';
+@import './components/Profile/__form/profile__form.css';
+@import './components/Profile/__label/profile__label.css';
+
+@import './components/Error/Error.css';
+@import './components/Error/__link/error__link.css';
+@import './components/Error/__title/error__title.css';
+@import './components/Error/__description/error__description.css';

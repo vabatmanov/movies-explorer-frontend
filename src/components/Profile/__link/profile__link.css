@@ -1,0 +1,13 @@
+.profile__link {
+  margin: 16px 0 0;
+  font: normal 500 13px/16px Inter, Arial, sans-serif;
+  color: #FF4062;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__link {
+    font: normal 500 12px/15px Inter, Arial, sans-serif;
+  }
+}

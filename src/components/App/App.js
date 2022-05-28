@@ -3,16 +3,21 @@ import Header from "../Header/Header";
 import Main from  "../Main/Main"
 import SideMenu from "../SideMenu/SideMenu";
 import Movies from "../Movies/Movies";
+import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
+import Error from "../Error/Error";
+import Constants from "../../utils/Constatns";
 
-import React, {useState} from "react";
-import {Route, Routes} from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {Route, Routes, useLocation} from 'react-router-dom';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true); //Пользователь вошел ?
   const [isSideMenu, setIsSideMenu] = useState(false); //статус богового меню
   const [filmList, setFilmList] = useState([{card: 'name'}]); //список фильмов
   const [loading, setLoading] = useState(false); //список фильмов
+
+  const isLocation = useLocation().pathname;
 
   // Открывает боковое меню
   function handleSideMenuClicked() {
@@ -27,14 +32,18 @@ function App() {
   return (
     <div className="App">
       {/*{loggedIn && <Header loggedIn={loggedIn}/>}*/}
-      <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>
+      {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation) ||
+      <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>}
       <Routes>
         <Route path="/" element={<Main/>} />
         <Route path="/movies" element={<Movies filmList={filmList} isLoading={loading}/>} />
         <Route path="/saved-movies" element={<Movies/>} />
+        <Route path="/profile" element={<Profile/>} />
+
+        <Route path="/error" element={<Error/>} />
       </Routes>
       <SideMenu isOpen={isSideMenu} onClose={allWindowsClose}/>
-      <Footer/>
+      {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation) || <Footer/>}
     </div>
   );
 }
