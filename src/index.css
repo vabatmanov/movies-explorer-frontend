@@ -79,8 +79,21 @@
 @import './components/Preloader/Preloader.css';
 
 @import './components/Movies/Movies.css';
-/*@import './components/Movies/';*/
+
+@import './components/SearchForm/SearchForm.css';
+@import './components/SearchForm/__logo/search-form__logo.css';
+@import './components/SearchForm/__button/search-form__button.css';
+@import './components/SearchForm/__container/search-form__container.css';
+@import './components/SearchForm/__input-find/search-form__input-find.css';
+
+@import './components/FilterCheckbox/FilterCheckbox.css';
+@import './components/FilterCheckbox/__input/filter-checkbox__input.css';
+@import './components/FilterCheckbox/__switch/filter-checkbox__switch.css';
+@import './components/FilterCheckbox/__text/filter-checkbox__text.css';
+
 @import './components/MoviesCardList/MoviesCardList.css';
+@import './components/MoviesCardList/__button/movies-card-list__button.css';
+@import './components/MoviesCardList/_theme/movies-card-list_theme_padding-long.css';
 
 @import './components/MoviesCard/MoviesCard.css';
 @import './components/MoviesCard/__title/movies-card__title.css';

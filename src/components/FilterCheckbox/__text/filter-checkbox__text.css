@@ -1,0 +1,9 @@
+.filter-checkbox__text {
+  font: normal 400 13px/18px Inter, Arial, sans-serif;
+}
+
+@media screen and (max-width: 320px) {
+  .filter-checkbox__text {
+    font: normal 400 11px/20px Inter, Arial, sans-serif;
+  }
+}

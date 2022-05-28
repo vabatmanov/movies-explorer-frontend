@@ -1,0 +1,9 @@
+.search-form__logo {
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .search-form__logo {
+    display: none;
+  }
+}

@@ -1,0 +1,15 @@
+.search-form__button {
+  width: 34px;
+  height: 34px;
+  border-radius: 48px;
+  border: 0;
+  margin: 0 19px 0 46px;
+  background: url("../../../images/find-logo-button.svg") #000000 center center no-repeat;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .search-form__button {
+    margin: 0 0 0 46px;
+  }
+}
