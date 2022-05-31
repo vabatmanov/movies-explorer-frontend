@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Profile() {
   return (
@@ -13,7 +13,7 @@ function Profile() {
           <input className='profile__input' type='text' id='email' placeholder='pochta@yandex.ru'/>
         </label>
         <button className='profile__button' type='submit'>Редактировать</button>
-        <NavLink className='profile__link'  to='/'>Выйти из аккаунта</NavLink>
+        <Link className='profile__link'  to='/'>Выйти из аккаунта</Link>
       </form>
     </main>
   );

@@ -2,17 +2,17 @@
 @import './vendor/font.css';
 
 @import './components/Header/Header.css';
-@import "components/Header/_theme/Header_theme_pink.css";
-@import "components/Header/__link/header__link.css";
-@import "components/Header/__button-menu/header__button-menu.css";
+@import "./components/Header/_theme/Header_theme_pink.css";
+@import "./components/Header/__link/header__link.css";
+@import "./components/Header/__button-menu/header__button-menu.css";
 
 @import './components/Navigation/Navigation.css';
-@import 'components/Navigation/_theme/navigation_theme_side-menu.css';
+@import './components/Navigation/_theme/navigation_theme_side-menu.css';
 @import "./components/Navigation/__top/navigation__top.css";
 @import "./components/Navigation/__top/_theme/navigation__top_theme_side-menu.css";
 @import "./components/Navigation/__link/navigation__link.css";
 @import "./components/Navigation/__link/_theme/navigation__link_theme_side-menu.css";
-@import "components/Navigation/__link/_active/navigation__link_active_default.css";
+@import "./components/Navigation/__link/_active/navigation__link_active_default.css";
 @import "./components/Navigation/__link/_active/navigation__link_active_side-menu.css";
 @import "./components/Navigation/__items/navigation__items.css";
 @import "./components/Navigation/__items/_theme/navigation__items_theme_side-menu.css";
@@ -117,3 +117,22 @@
 @import './components/Error/__link/error__link.css';
 @import './components/Error/__title/error__title.css';
 @import './components/Error/__description/error__description.css';
+
+@import './components/EntryWindows/EntryWindows.css';
+@import './components/EntryWindows/__logo/entry-windows__logo.css';
+@import './components/EntryWindows/__form/entry-windows__form.css';
+@import './components/EntryWindows/__title/entry-windows__title.css';
+@import './components/EntryWindows/__form-button/entry-windows__form-button.css';
+@import './components/EntryWindows/__form-button/_theme/entry-windows__form-button_theme_login.css';
+@import './components/EntryWindows/__question/entry-windows__question.css';
+@import './components/EntryWindows/__link/entry-windows__link.css';
+
+@import './components/Register/Register.css';
+@import './components/Register/__label/register__label.css';
+@import './components/Register/__input/register__input.css';
+@import './components/Register/__error-text/register__error-text.css';
+
+@import './components/Login/Login.css';
+@import './components/Login/__error-text/login__error-text.css';
+@import './components/Login/__input/login__input.css';
+@import './components/Login/__label/login__label.css';

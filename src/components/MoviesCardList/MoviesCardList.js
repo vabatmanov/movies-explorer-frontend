@@ -13,7 +13,7 @@ function MoviesCardList({films, isLoading}) {
       {(films.length > 0) && films.map(item => <MoviesCard key={item._id} {...item}  />)}
     </ul>
       <Preloader isLoading={isLoading}/>
-      {isMovies ? <button className='movies-card-list__button' type='button'>Ещё</button>:null}
+      {isMovies ? <button className='movies-card-list__button' type="button">Ещё</button>:null}
     </>
   );
 }

@@ -5,11 +5,13 @@ import SideMenu from "../SideMenu/SideMenu";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
+import Register from "../Register/Register";
 import Error from "../Error/Error";
+import Login from "../Login/Login";
 import Constants from "../../utils/Constatns";
-
 import React, {useEffect, useState} from "react";
 import {Route, Routes, useLocation} from 'react-router-dom';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true); //Пользователь вошел ?
@@ -37,10 +39,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>} />
         <Route path="/movies" element={<Movies filmList={filmList} isLoading={loading}/>} />
-        <Route path="/saved-movies" element={<Movies/>} />
+        <Route path="/saved-movies" element={<Movies filmList={filmList} isLoading={loading}/>} />
         <Route path="/profile" element={<Profile/>} />
 
-        <Route path="/error" element={<Error/>} />
+        <Route path="/signup" element={<Register/>} />
+        <Route path="/signin" element={<Login isLocation={isLocation}/>} />
+        <Route path="/*" element={<Error/>} />
+
       </Routes>
       <SideMenu isOpen={isSideMenu} onClose={allWindowsClose}/>
       {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation) || <Footer/>}

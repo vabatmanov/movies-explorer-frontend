@@ -28,3 +28,11 @@
     background: url("../../../images/arrow.svg") right 6px/10px 16px no-repeat;
   }
 }
+
+.portfolio__link:hover {
+  opacity: 0.7;
+}
+
+.portfolio__link:active {
+  color: #2BE080;
+}

@@ -1,0 +1,13 @@
+.entry-windows__question {
+  margin: 16px 0 0;
+  text-align: center;
+  font: normal 400 14px/17px Inter, Arial, sans-serif;
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 320px) {
+  .entry-windows__question {
+    margin: 14px 0 0;
+    font: normal 400 12px/15px Inter, Arial, sans-serif;
+  }
+}

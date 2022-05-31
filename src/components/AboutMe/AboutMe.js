@@ -15,8 +15,8 @@ function AboutMe() {
             «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с
             постоянной работы.</p>
           <nav className='about-me__profile-links'>
-              <a className='about-me__profile-link' href="https://vk.com/" target="_blank">Facebook</a>
-              <a className='about-me__profile-link' href="https://github.com/" target="_blank">Github</a>
+            <a className='about-me__profile-link' href="https://vk.com/"  target="_blank" rel="noreferrer">Facebook</a>
+            <a className='about-me__profile-link' href="https://github.com/" target="_blank" rel="noreferrer">Github</a>
           </nav>
         </div>
       </div>

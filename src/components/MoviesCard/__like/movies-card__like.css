@@ -10,4 +10,13 @@
   align-self: center;
 }
 
+.movies-card__like:hover {
+  opacity: 0.7;
+}
+
+.movies-card__like:active {
+  opacity: 1;
+  border: 2px solid #A0A0A0;
+  box-shadow: 0 0 10px #A0A0A0;
+}
 

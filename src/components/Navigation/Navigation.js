@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileLogo from '../../images/profile-logo.svg';
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 
 function Navigation({isTheme}) {
   const setActiveLink = ({isActive}) => (`navigation__link ${isTheme && isTheme.__link} `+(isActive ? (isTheme ? isTheme.__link_active:"navigation__link_active_default"):""));
@@ -18,12 +18,12 @@ function Navigation({isTheme}) {
           <NavLink className={setActiveLink} to='/saved-movies'>Сохранённые фильмы</NavLink>
         </li>
       </ul>
-      <button className='navigation__button' type='button'>
+      <Link className='navigation__button' to='/profile'>
         <p className='navigation__button-text'>Аккаунт</p>
         <figure className='navigation__button-background-logo'>
           <img className='navigation__button-logo' src={ProfileLogo} alt="Логотип аккаунта"/>
         </figure>
-      </button>
+      </Link>
     </nav>
   );
 }

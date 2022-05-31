@@ -32,3 +32,11 @@
     height: 26px;
   }
 }
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+.header__link:active {
+  color: #2BE080;
+}

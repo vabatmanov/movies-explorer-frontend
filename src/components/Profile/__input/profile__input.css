@@ -5,3 +5,7 @@
   font: normal 400 11px/13px Inter, Arial, sans-serif;
   color: #000000;
 }
+
+.profile__input:focus {
+  font-weight: 500;
+}
