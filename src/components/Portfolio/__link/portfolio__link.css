@@ -18,10 +18,11 @@
 @media screen and (max-width: 768px) {
   .portfolio__link {
     font: normal 400 28px/50px Inter, Arial, sans-serif;
+    padding-right: 18px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 384px) {
   .portfolio__link {
     margin-right: 4px;
     font: normal 400 18px/28px Inter, Arial, sans-serif;
