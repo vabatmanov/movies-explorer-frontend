@@ -1,0 +1,138 @@
+@import './vendor/normalize.css';
+@import './vendor/font.css';
+
+@import './components/Header/Header.css';
+@import "./components/Header/_theme/Header_theme_pink.css";
+@import "./components/Header/__link/header__link.css";
+@import "./components/Header/__button-menu/header__button-menu.css";
+
+@import './components/Navigation/Navigation.css';
+@import './components/Navigation/_theme/navigation_theme_side-menu.css';
+@import "./components/Navigation/__top/navigation__top.css";
+@import "./components/Navigation/__top/_theme/navigation__top_theme_side-menu.css";
+@import "./components/Navigation/__link/navigation__link.css";
+@import "./components/Navigation/__link/_theme/navigation__link_theme_side-menu.css";
+@import "./components/Navigation/__link/_active/navigation__link_active_default.css";
+@import "./components/Navigation/__link/_active/navigation__link_active_side-menu.css";
+@import "./components/Navigation/__items/navigation__items.css";
+@import "./components/Navigation/__items/_theme/navigation__items_theme_side-menu.css";
+@import "./components/Navigation/__items/_device/navigation__items_device_tablet.css";
+@import "./components/Navigation/__button/navigation__button.css";
+@import "./components/Navigation/__button-logo/navigation__button-text.css";
+@import "./components/Navigation/__button-text/navigation__button-logo.css";
+@import "./components/Navigation/__button-background-logo/navigation__button-background-logo.css";
+
+@import './components/SideMenu/SideMenu.css';
+@import './components/SideMenu/__content/side-menu__content.css';
+@import './components/SideMenu/__button-close/side-menu__button-close.css';
+@import './components/SideMenu/_opened/side-menu_opened.css';
+
+@import './components/Main/Main.css';
+
+@import './components/Promo/Promo.css';
+@import './components/Promo/__title/promo__title.css';
+
+@import './components/AboutProject/AboutProject.css';
+@import './components/AboutProject/__title/aboutproject__title.css';
+@import './components/AboutProject/__content/aboutproject__content.css';
+@import './components/AboutProject/__item/aboutproject__item.css';
+@import './components/AboutProject/__item-description/aboutproject__item-description.css';
+@import './components/AboutProject/__item-title/aboutproject__item-title.css';
+@import './components/AboutProject/__period/aboutproject__period.css';
+@import './components/AboutProject/__period/_theme/aboutproject__period_theme_black.css';
+@import './components/AboutProject/__period/_theme/aboutproject__period_theme_gray.css';
+@import './components/AboutProject/__period/aboutproject__period.css';
+@import './components/AboutProject/__period-title/aboutproject__period-title.css';
+@import './components/AboutProject/__period-title/_theme/aboutproject__period-title_theme_gray.css';
+@import './components/AboutProject/__period-description/aboutproject__period-description.css';
+
+@import './components/Techs/Techs.css';
+@import './components/Techs/__title/techs__title.css';
+@import './components/Techs/__tech-title/techs__tech-title.css';
+@import './components/Techs/__tech-description/techs__tech-description.css';
+@import './components/Techs/__items/techs__items.css';
+@import './components/Techs/__item/techs__item.css';
+@import './components/Techs/__item-title/techs__item-title.css';
+
+@import './components/AboutMe/AboutMe.css';
+@import './components/AboutMe/__title/about-me__title.css';
+@import './components/AboutMe/__content/about-me__content.css';
+@import './components/AboutMe/__profile-img/about-me__profile-img.css';
+@import './components/AboutMe/__profile-description/about-me__profile-description.css';
+@import './components/AboutMe/__profile-title/about-me__profile-title.css';
+@import './components/AboutMe/__profession/about-me__profession.css';
+@import './components/AboutMe/__profile-detail/about-me__profile-detail.css';
+@import './components/AboutMe/__profile-links/about-me__profile-links.css';
+@import './components/AboutMe/__profile-link/about-me__profile-link.css';
+
+@import './components/Portfolio/Portfolio.css';
+@import './components/Portfolio/__title/portfolio__title.css';
+@import './components/Portfolio/__links/portfolio__links.css';
+@import './components/Portfolio/__link/portfolio__link.css';
+
+@import './components/Footer/Footer.css';
+@import './components/Footer/__title/footer__title.css';
+@import './components/Footer/__links/footer__links.css';
+@import './components/Footer/__link/footer__link.css';
+@import './components/Footer/__year/footer__year.css';
+
+@import './components/Preloader/Preloader.css';
+
+@import './components/Movies/Movies.css';
+
+@import './components/SearchForm/SearchForm.css';
+@import './components/SearchForm/__logo/search-form__logo.css';
+@import './components/SearchForm/__button/search-form__button.css';
+@import './components/SearchForm/__container/search-form__container.css';
+@import './components/SearchForm/__input-find/search-form__input-find.css';
+
+@import './components/FilterCheckbox/FilterCheckbox.css';
+@import './components/FilterCheckbox/__input/filter-checkbox__input.css';
+@import './components/FilterCheckbox/__switch/filter-checkbox__switch.css';
+@import './components/FilterCheckbox/__text/filter-checkbox__text.css';
+
+@import './components/MoviesCardList/MoviesCardList.css';
+@import './components/MoviesCardList/__button/movies-card-list__button.css';
+@import './components/MoviesCardList/_theme/movies-card-list_theme_padding-long.css';
+
+@import './components/MoviesCard/MoviesCard.css';
+@import './components/MoviesCard/__title/movies-card__title.css';
+@import './components/MoviesCard/__image/movies-card__image.css';
+@import './components/MoviesCard/__like/movies-card__like.css';
+@import './components/MoviesCard/__like/_status/movies-card__like_status_liked.css';
+@import './components/MoviesCard/__like/_status/movies-card__like_status_disliked.css';
+@import './components/MoviesCard/__duration/movies-card__duration.css';
+@import './components/MoviesCard/__header/movies-card__header.css';
+@import './components/MoviesCard/__logo-like/movies-card__logo-like.css';
+
+@import './components/Profile/Profile.css';
+@import './components/Profile/__input/profile__input.css';
+@import './components/Profile/__button/profile__button.css';
+@import './components/Profile/__title/profile__title.css';
+@import './components/Profile/__link/profile__link.css';
+@import './components/Profile/__form/profile__form.css';
+@import './components/Profile/__label/profile__label.css';
+
+@import './components/Error/Error.css';
+@import './components/Error/__link/error__link.css';
+@import './components/Error/__title/error__title.css';
+@import './components/Error/__description/error__description.css';
+
+@import './components/EntryWindows/EntryWindows.css';
+@import './components/EntryWindows/__logo/entry-windows__logo.css';
+@import './components/EntryWindows/__form/entry-windows__form.css';
+@import './components/EntryWindows/__title/entry-windows__title.css';
+@import './components/EntryWindows/__form-button/entry-windows__form-button.css';
+@import './components/EntryWindows/__form-button/_theme/entry-windows__form-button_theme_login.css';
+@import './components/EntryWindows/__question/entry-windows__question.css';
+@import './components/EntryWindows/__link/entry-windows__link.css';
+
+@import './components/Register/Register.css';
+@import './components/Register/__label/register__label.css';
+@import './components/Register/__input/register__input.css';
+@import './components/Register/__error-text/register__error-text.css';
+
+@import './components/Login/Login.css';
+@import './components/Login/__error-text/login__error-text.css';
+@import './components/Login/__input/login__input.css';
+@import './components/Login/__label/login__label.css';

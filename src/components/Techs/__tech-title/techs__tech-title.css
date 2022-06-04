@@ -1,0 +1,19 @@
+.techs__tech-title {
+  margin: 90px 0 0 0;
+  text-align: center;
+  font: normal 400 50px/58px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__tech-title {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .techs__tech-title {
+    margin-top: 60px;
+    font: normal 400 30px/36px Inter, Arial, sans-serif;
+  }
+}

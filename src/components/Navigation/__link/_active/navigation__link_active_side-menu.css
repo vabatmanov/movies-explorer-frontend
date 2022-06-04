@@ -1,0 +1,12 @@
+.navigation__link_active_side-menu {
+  font: normal 500 18px/22px Inter, Arial, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__link_active_side-menu {
+    text-underline-offset: 7px;
+  }
+}

@@ -1,0 +1,15 @@
+.about-me__profession {
+  font: normal 500 18px/20px Inter, Arial, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__profession {
+    font: normal 500 12px/18px Inter, Arial, sans-serif;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__profession {
+    font: normal 500 11px/16px Inter, Arial, sans-serif;
+  }
+}

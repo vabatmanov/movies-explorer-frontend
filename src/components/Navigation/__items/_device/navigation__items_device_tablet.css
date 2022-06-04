@@ -1,0 +1,9 @@
+.navigation__items_device_tablet {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__items_device_tablet {
+    display: list-item;
+  }
+}

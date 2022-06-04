@@ -1,0 +1,12 @@
+.error__description {
+  font: normal 400 16px/19px Inter, Arial, sans-serif;
+  text-align: center;
+  margin: 5px 0 0;
+}
+
+@media screen and (max-width: 320px) {
+  .error__description {
+    font: normal 400 12px/15px Inter, Arial, sans-serif;
+    margin: 10px 0 0;
+  }
+}

@@ -1,0 +1,14 @@
+.techs__title {
+  margin: 0;
+  font: normal 400 22px/27px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 22px;
+}
+
+@media screen and (max-width: 320px) {
+  .techs__title {
+    padding-bottom: 28px;
+    font: normal 400 18px/22px Inter, Arial, sans-serif;
+  }
+}

@@ -1,0 +1,16 @@
+.profile {
+  padding: 74px 30px 0; /*70px*/
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    padding: 236px 30px 0; /*269px*/
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile {
+    padding: 70px 30px 0; /*40px*/
+  }
+}
+

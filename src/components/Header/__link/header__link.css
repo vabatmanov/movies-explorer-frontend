@@ -1,0 +1,42 @@
+.header__link {
+  text-decoration: none;
+  color: #000000;
+  margin-right: 30px;
+  font: normal 500 12px/16px Inter, Arial, sans-serif;
+}
+
+.header__link:first-of-type {
+  margin-left: auto;
+}
+
+.header__link:last-of-type {
+  display: flex;
+  width: 76px;
+  height: 32px;
+  color: #FFFFFF;
+  margin-right: 0;
+  background: #000000;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 320px) {
+  .header__link {
+    font: normal 500 10px/16px Inter, Arial, sans-serif;
+    margin-right: 14px;
+  }
+
+  .header__link:last-of-type {
+    width: 54px;
+    height: 26px;
+  }
+}
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+.header__link:active {
+  color: #2BE080;
+}

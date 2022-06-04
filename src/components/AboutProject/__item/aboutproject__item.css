@@ -1,0 +1,24 @@
+.aboutproject__item {
+
+}
+
+.aboutproject__item:last-of-type {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: minmax(1px, 228px) minmax(1px,1fr);
+  margin: 54px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutproject__item:last-of-type {
+    margin-top: 36px;
+    grid-template-columns: minmax(1px, 140px) minmax(1px,1fr);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__item:last-of-type {
+    margin-top: 4px;
+    grid-template-columns: minmax(1px, 100px) minmax(1px,1fr);
+  }
+}

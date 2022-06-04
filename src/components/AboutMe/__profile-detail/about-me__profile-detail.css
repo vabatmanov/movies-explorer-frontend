@@ -1,0 +1,12 @@
+.about-me__profile-detail {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__profile-detail {
+    min-width: 292px;
+    min-height: 262px;
+  }
+}

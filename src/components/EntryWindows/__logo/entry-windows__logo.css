@@ -1,0 +1,9 @@
+.entry-windows__logo {
+  display: block;
+}
+
+@media screen and (max-width: 320px) {
+  .entry-windows__logo {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,11 @@
+.aboutproject__item-title {
+  margin: 0;
+  font: normal 400 20px/24px Inter, Arial, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__item-title {
+    font: normal 400 18px/22px Inter, Arial, sans-serif;
+  }
+}

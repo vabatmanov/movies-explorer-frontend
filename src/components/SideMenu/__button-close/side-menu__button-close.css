@@ -1,0 +1,26 @@
+.side-menu__button-close {
+  border: none;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  background: url("../../../images/close.svg") center center/100% 100% no-repeat;
+  margin: 29px 29px 112px auto;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .side-menu__button-close {
+    margin: 20px 20px 106px auto;
+  }
+}
+
+.side-menu__button-close:hover {
+  opacity: 0.7;
+}
+
+.side-menu__button-close:active {
+  opacity: 1;
+  border: 2px solid #A0A0A0;
+  box-shadow: 0 0 10px #A0A0A0;
+}

@@ -1,0 +1,22 @@
+.filter-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 29px;
+  border-left: 1px solid #CBCBCB;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-checkbox {
+    padding-left: 19px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .filter-checkbox {
+    margin-top: 55px;
+    border-left: none;
+    padding-left: 0;
+    grid-column: 1/-1;
+  }
+}

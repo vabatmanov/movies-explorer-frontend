@@ -1,0 +1,9 @@
+.entry-windows__form-button_theme_login {
+  margin-top: 157px;
+}
+
+@media screen and (max-width: 320px) {
+  .entry-windows__form-button_theme_login {
+    margin-top: 245px;
+  }
+}
