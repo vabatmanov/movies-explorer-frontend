@@ -4,6 +4,9 @@
   color: #FF4062;
   text-decoration: none;
   text-align: center;
+  border: 0;
+  padding: 0;
+  background: none;
 }
 
 @media screen and (max-width: 320px) {

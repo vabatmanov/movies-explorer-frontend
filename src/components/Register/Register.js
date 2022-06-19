@@ -1,9 +1,9 @@
 import React from 'react';
 import EntryWindows from "../EntryWindows/EntryWindows";
 
-function Register() {
+function Register({isButton}) {
   return (
-    <EntryWindows>
+    <EntryWindows isButton={isButton}>
       <label className='register__label' htmlFor='name'>Имя
         <input className='register__input' type='text' id='name' placeholder='Введите имя'/>
       </label>

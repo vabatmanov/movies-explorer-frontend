@@ -1,7 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 
-function Profile() {
+function Profile({onSignOut}) {
+  function handleSubmit(e) {
+    e.defaultPrevented();
+
+  }
+
   return (
     <main className='profile'>
       <h1 className='profile__title'>Привет, Виталий!</h1>
@@ -12,8 +16,8 @@ function Profile() {
         <label className='profile__label' htmlFor='email'>E-mail
           <input className='profile__input' type='text' id='email' placeholder='pochta@yandex.ru'/>
         </label>
-        <button className='profile__button' type='submit'>Редактировать</button>
-        <Link className='profile__link'  to='/signin'>Выйти из аккаунта</Link>
+        <button className='profile__button' type='submit' onSubmit={handleSubmit}>Редактировать</button>
+        <button className='profile__link'  type='button' onClick={onSignOut}>Выйти из аккаунта</button>
       </form>
     </main>
   );

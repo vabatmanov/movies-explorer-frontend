@@ -8,6 +8,9 @@ const Constants = {
     '/error',
     '/signup',
     '/signin'],
+  ENTER_BUTTON: 'Войти',
+  REG_BUTTON: 'Зарегистрироваться',
+  IMG_SERVER: 'https://api.nomoreparties.co'
 }
 
 export default Constants;
