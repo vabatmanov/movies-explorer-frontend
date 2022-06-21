@@ -15,19 +15,21 @@ import MoviesApi from "../../utils/MoviesApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import React, {useEffect, useState} from "react";
-import {useNavigate, Route, Routes, useLocation} from 'react-router-dom';
+import {useNavigate, Route, Routes, useLocation, Navigate} from 'react-router-dom';
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); //Пользователь вошел ?
   const [checkJwt, setCheckJwt] = useState(false); //Проверка токена ?
   const [isSideMenu, setIsSideMenu] = useState(false); //статус богового меню
-  const [filmList, setFilmList] = useState([]); //список фильмов закладки
-  const [allFilmList, setAllFilmList] = useState([]); //список фильмов закладки
   const [preloader, setPreloader] = useState(false); //прелоадер
   const [currentUser, serCurrentUser] = useState({}); //данные о пользователе
-  const [loadMovie, setLoadMovie] = useState(false); //первая загрузка Movie
-  const [loadSaveMovie, setLoadSaveMovie] = useState(false); //первая загрузка SaveMovie
+  const [movieList, setMovieList] = useState([]); //список фильмов BestFilms
+  const [saveMovieList, setSaveMovieList] = useState([]); //список фильмов в закладках
+  const [shortMovieFilter, setShortMovieFilter] = useState(false); //состояние checkbox movie
+  const [firstLoadMovie, setFirstLoadMovie] = useState(false); //первая загрузка Movie была ?
+  const [shortSaveMovieFilter, setShortSaveMovieFilter] = useState(false); //строка поиска
+  const [firstLoadSaveMovie, setFirstLoadSaveMovie] = useState(false); //первая загрузка SaveMovie
 
   let navigate = useNavigate();
   const isLocation = useLocation().pathname;
@@ -41,6 +43,14 @@ function App() {
         })
         .catch(error => console.log(error))
         .finally(()=> {
+          localStorage.movieSearchText = '';
+          localStorage.shortMovieFilter = JSON.stringify(false);
+          localStorage.movieFound = JSON.stringify([]);
+
+          localStorage.saveMovieSearchText = '';
+          localStorage.shortSaveMovieFilter = JSON.stringify(false);
+          localStorage.saveMovieFound = JSON.stringify([]);
+
           setCheckJwt(true);
         })
     }
@@ -50,29 +60,20 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getMovies(), MoviesApi.getMovies()])
-        .then(([userData, filmList, allFilmList]) => {
+        .then(([userData, saveMovie, movie]) => {
           serCurrentUser({...userData});
-          setFilmList(filmList);
-          setAllFilmList(allFilmList);
+
+          //загрузка данных при первом входе.
+          localStorage.movie = JSON.stringify(movie);
+          localStorage.saveMovie = JSON.stringify(saveMovie);
+
+          setMovieList(movie);
+          setSaveMovieList(saveMovie)
         })
         .catch(error => console.log(error))
       console.log('Я попал во второй юз эффект');
     }
   }, [loggedIn])
-
-  /*  .map((item) =>  {
-      return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
-    })*/
-
-
-  function loadBeatFilm() {
-
-  }
-
-  // Фильм находится в закладках ?
-  function onLiked(id) {
-    return filmList.find(item => item.movieId === id)?true:false;
-  }
 
 
   // Открывает боковое меню
@@ -90,7 +91,7 @@ function App() {
       .then((data) => {
         setLoggedIn(true);
         console.log(data)
-        navigate('/', { replace: true });
+        navigate('/movies', { replace: true });
       })
       .catch(error => {
         /*setIsInfoTooltipOpen({
@@ -105,36 +106,90 @@ function App() {
     auth.logOff()
       .then(() => {
         setLoggedIn(false);
-        navigate('/signin', { replace: true });
+        navigate('./', { replace: true });
       })
       .catch(error => {
         console.log(error)
       });
   }
 
+  function handleFindMovies(searchText) {
+    localStorage.movieFound = JSON.stringify(
+      movieList.filter(item => {
+        return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
+      })
+    );
+    localStorage.movieSearchText = searchText;
+    localStorage.shortMovieFilter = JSON.stringify(shortMovieFilter);
+    setShortMovieFilter(JSON.parse(localStorage.shortMovieFilter));
+    setPreloader(false);
+  }
+
+  function handleFindSaveMovies(searchText) {
+    localStorage.saveMovieFound = JSON.stringify(
+      saveMovieList.filter(item => {
+        return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
+      })
+    );
+    localStorage.saveMovieSearchText = searchText;
+    localStorage.shortSaveMovieFilter = JSON.stringify(shortMovieFilter);
+    setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
+    setPreloader(false);
+  }
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {checkJwt && <div className="App">
-        {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation) || (loggedIn &&
+        {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation)?'':(
         <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>)}
         <Routes>
           <Route path="/" element={
-            <ProtectedRoute loggedIn={loggedIn} isLocation={isLocation}>
+            //<ProtectedRoute loggedIn={loggedIn} isLocation={isLocation}>
               <Main/>
-            </ProtectedRoute>
+            //</ProtectedRoute>
           }/>
 
           <Route path="/movies" element={
             <ProtectedRoute loggedIn={loggedIn}>
-              <Movies filmList={allFilmList} isPreloader={preloader} onLiked={onLiked}/>
+              <Movies
+                /*isMovieList={movieList}
+                isSaveMovieList={saveMovieList}*/
+
+                isMovieFound={JSON.parse(localStorage.movieFound)}
+                isMovieSearchText={localStorage.movieSearchText}
+                isShortMovieFilter={shortMovieFilter}
+                onShortMovieFilter={setShortMovieFilter}
+
+                isFirstLoadMovie={firstLoadMovie}
+                onFirstLoadMovie={setFirstLoadMovie}
+
+                isPreloader={preloader}
+                onPreloader={setPreloader}
+
+                handleFindFilms={handleFindMovies}
+              />
             </ProtectedRoute>
           } />
 
-          <Route path="/saved-movies" element={
+          {<Route path="/saved-movies" element={
             <ProtectedRoute loggedIn={loggedIn}>
-              <Movies filmList={filmList} isPreloader={preloader} />
+              <Movies
+                isMovieFound={JSON.parse(localStorage.saveMovieFound)}
+                isMovieSearchText={localStorage.saveMovieSearchText}
+                isShortMovieFilter={shortSaveMovieFilter}
+                onShortMovieFilter={setShortSaveMovieFilter}
+
+                isFirstLoadMovie={firstLoadSaveMovie}
+                onFirstLoadMovie={setFirstLoadSaveMovie}
+
+                isPreloader={preloader}
+                onPreloader={setPreloader}
+
+                handleFindFilms={handleFindSaveMovies}
+              />
             </ProtectedRoute>
-          } />
+          } />}
 
           <Route path="/profile" element={
             <ProtectedRoute loggedIn={loggedIn}>
@@ -142,13 +197,15 @@ function App() {
             </ProtectedRoute>
           } />
 
+
           <Route path="/signup" element={<Register isButton={Constants.REG_BUTTON}/>} />
           <Route path="/signin" element={<Login isLocation={isLocation} isButton={Constants.ENTER_BUTTON} onLogin={handleLogin}/>} />
-          <Route path="/*" element={<Error/>} />
+          <Route path="/error" element={<Error/>} />
+          <Route path="/*" element={<Navigate to="/error"/>} />
 
         </Routes>
         <SideMenu isOpen={isSideMenu} onClose={allWindowsClose}/>
-        {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation) || (loggedIn && <Footer/>)}
+        {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation)?'':<Footer/>}
       </div>}
     </CurrentUserContext.Provider>
   );

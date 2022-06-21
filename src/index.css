@@ -108,6 +108,7 @@
 @import './components/Profile/Profile.css';
 @import './components/Profile/__input/profile__input.css';
 @import './components/Profile/__button/profile__button.css';
+@import './components/Profile/__button/_disabled/profile__button_disabled.css';
 @import './components/Profile/__title/profile__title.css';
 @import './components/Profile/__link/profile__link.css';
 @import './components/Profile/__form/profile__form.css';
