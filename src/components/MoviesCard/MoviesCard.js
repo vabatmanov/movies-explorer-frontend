@@ -2,7 +2,13 @@ import React from 'react';
 //import LogoLike from '../../images/button-like/like.svg';
 //import Img from '../../images/test-img.png';
 
-function MoviesCard({id, nameRU, image, duration, isLiked}) {
+function MoviesCard({id, nameRU, image, duration, isSaveMovieList}) {
+  /*const isLiked = isSaveMovieList.find((item) => {
+    item.moveId === id
+  })*/
+  //остановился где-то тут, требуется определить лайкнута карточка или нет :)
+
+
   function calcDuration() {
     return (`${Math.floor(duration/60)}ч  ${((duration%60)>0)?duration%60+'м':''}`);
   }
@@ -14,6 +20,9 @@ function MoviesCard({id, nameRU, image, duration, isLiked}) {
         <h2 className='movies-card__title'>{nameRU}</h2>
         <p className='movies-card__duration'>{calcDuration()}</p>
         <button className={`movies-card__like ${isLiked?'movies-card__like_status_liked':''}`} type="button">
+
+
+
           {/*<img className='movies-card__logo-like' src={LogoLike} alt='Иконка, фильм сохранен'/>*/}
         </button>
       </div>

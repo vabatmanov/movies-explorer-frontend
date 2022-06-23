@@ -7,6 +7,7 @@ import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import Register from "../Register/Register";
 import Error from "../Error/Error";
+import Popup from "../Popup/Popup";
 import Login from "../Login/Login";
 import Constants from "../../utils/Constatns";
 import auth from "../../utils/auth";
@@ -21,15 +22,25 @@ import {useNavigate, Route, Routes, useLocation, Navigate} from 'react-router-do
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); //Пользователь вошел ?
   const [checkJwt, setCheckJwt] = useState(false); //Проверка токена ?
+  const [popupOpen, setPopupOpen] = useState(false); //Открытие popup
+  const [popup, setPopupText] = useState(''); //popup текст ошибки
+  const [enterError, setEnterError] = useState(false); //определение ошибки при входе или регистрации
+
   const [isSideMenu, setIsSideMenu] = useState(false); //статус богового меню
   const [preloader, setPreloader] = useState(false); //прелоадер
   const [currentUser, serCurrentUser] = useState({}); //данные о пользователе
   const [movieList, setMovieList] = useState([]); //список фильмов BestFilms
   const [saveMovieList, setSaveMovieList] = useState([]); //список фильмов в закладках
+
+  const [movieFound, setMovieFound] = useState([]); //найденные фильмы
   const [shortMovieFilter, setShortMovieFilter] = useState(false); //состояние checkbox movie
   const [firstLoadMovie, setFirstLoadMovie] = useState(false); //первая загрузка Movie была ?
+
+  const [saveMovieFound, setSaveMovieFound] = useState([]); //найденные фильмы в закладках
   const [shortSaveMovieFilter, setShortSaveMovieFilter] = useState(false); //строка поиска
   const [firstLoadSaveMovie, setFirstLoadSaveMovie] = useState(false); //первая загрузка SaveMovie
+
+
 
   let navigate = useNavigate();
   const isLocation = useLocation().pathname;
@@ -64,13 +75,21 @@ function App() {
           serCurrentUser({...userData});
 
           //загрузка данных при первом входе.
-          localStorage.movie = JSON.stringify(movie);
-          localStorage.saveMovie = JSON.stringify(saveMovie);
+          const newMovie = movie.map((item) =>  {
+            return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
+          })
+          const newSaveMovie = saveMovie.map((item) =>  {
+            return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
+          })
 
-          setMovieList(movie);
-          setSaveMovieList(saveMovie)
+          localStorage.movie = JSON.stringify(newMovie);
+          localStorage.saveMovie = JSON.stringify(newSaveMovie);
+
+          setMovieList(newMovie);
+          setSaveMovieList(newSaveMovie)
         })
-        .catch(error => console.log(error))
+        .catch(error => handlePopupOpen(`${error}. Во время запроса произошла ошибка. Возможно, проблема с
+        соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`))
       console.log('Я попал во второй юз эффект');
     }
   }, [loggedIn])
@@ -90,15 +109,26 @@ function App() {
     auth.authorize(email, password)
       .then((data) => {
         setLoggedIn(true);
-        console.log(data)
         navigate('/movies', { replace: true });
       })
       .catch(error => {
-        /*setIsInfoTooltipOpen({
-          status: true,
-          statusMessage: false
-        });*/
-        console.log(error)
+        setEnterError(true);
+        handlePopupOpen(`${error}, что-то пошло не так`);
+      });
+  }
+
+  function handleRegister({email, password, name}) {
+    auth.register(email, password, name)
+      .then(() => {
+      return (auth.authorize(email, password))
+      })
+      .then(() => {
+        setLoggedIn(true);
+        navigate('/movies', {replace: true});
+      })
+      .catch(error => {
+        setEnterError(true);
+        handlePopupOpen(`${error}, что-то пошло не так`);
       });
   }
 
@@ -109,8 +139,28 @@ function App() {
         navigate('./', { replace: true });
       })
       .catch(error => {
-        console.log(error)
+        handlePopupOpen(`${error}, выход отменен`);
       });
+  }
+
+  function handlePopupOpen (errorText) {
+    setPopupText(errorText);
+    setPopupOpen(true);
+
+    setTimeout(() => {
+      setPopupOpen(false);
+    },5000);
+  }
+
+  function handleUpdateProfile (userData) {
+    api.editProfile(userData)
+      .then((userData) => {
+        serCurrentUser(userData);
+        handlePopupOpen('Профиль обновлен');
+      })
+      .catch((error) => {
+        handlePopupOpen(`${error}, профиль не обновлен.`);
+      })
   }
 
   function handleFindMovies(searchText) {
@@ -122,6 +172,7 @@ function App() {
     localStorage.movieSearchText = searchText;
     localStorage.shortMovieFilter = JSON.stringify(shortMovieFilter);
     setShortMovieFilter(JSON.parse(localStorage.shortMovieFilter));
+    setMovieFound(JSON.parse(localStorage.movieFound));
     setPreloader(false);
   }
 
@@ -134,20 +185,20 @@ function App() {
     localStorage.saveMovieSearchText = searchText;
     localStorage.shortSaveMovieFilter = JSON.stringify(shortMovieFilter);
     setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
+    setSaveMovieFound(localStorage.saveMovieFound)
     setPreloader(false);
   }
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
+
       {checkJwt && <div className="App">
+        <Popup isPopupOpen={popupOpen} isErrorText={popup}/>
         {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation)?'':(
         <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>)}
         <Routes>
           <Route path="/" element={
-            //<ProtectedRoute loggedIn={loggedIn} isLocation={isLocation}>
               <Main/>
-            //</ProtectedRoute>
           }/>
 
           <Route path="/movies" element={
@@ -156,7 +207,7 @@ function App() {
                 /*isMovieList={movieList}
                 isSaveMovieList={saveMovieList}*/
 
-                isMovieFound={JSON.parse(localStorage.movieFound)}
+                isMovieFound={movieFound}
                 isMovieSearchText={localStorage.movieSearchText}
                 isShortMovieFilter={shortMovieFilter}
                 onShortMovieFilter={setShortMovieFilter}
@@ -175,7 +226,8 @@ function App() {
           {<Route path="/saved-movies" element={
             <ProtectedRoute loggedIn={loggedIn}>
               <Movies
-                isMovieFound={JSON.parse(localStorage.saveMovieFound)}
+                isSaveMovieList = {saveMovieList}
+                isMovieFound={saveMovieFound}
                 isMovieSearchText={localStorage.saveMovieSearchText}
                 isShortMovieFilter={shortSaveMovieFilter}
                 onShortMovieFilter={setShortSaveMovieFilter}
@@ -193,13 +245,30 @@ function App() {
 
           <Route path="/profile" element={
             <ProtectedRoute loggedIn={loggedIn}>
-              <Profile onSignOut={handleLogOut}/>
+              <Profile
+                onSignOut={handleLogOut}
+                onUpdateProfile={handleUpdateProfile}
+              />
             </ProtectedRoute>
           } />
 
 
-          <Route path="/signup" element={<Register isButton={Constants.REG_BUTTON}/>} />
-          <Route path="/signin" element={<Login isLocation={isLocation} isButton={Constants.ENTER_BUTTON} onLogin={handleLogin}/>} />
+          <Route path="/signup" element={
+            <Register
+              isLocation={isLocation}
+              isButton={Constants.REG_BUTTON}
+              onRegister={handleRegister}
+              isEnterError={enterError}
+            />}
+          />
+          <Route path="/signin" element={
+            <Login
+              isLocation={isLocation}
+              isButton={Constants.ENTER_BUTTON}
+              onLogin={handleLogin}
+              isEnterError={enterError}
+            />}
+          />
           <Route path="/error" element={<Error/>} />
           <Route path="/*" element={<Navigate to="/error"/>} />
 

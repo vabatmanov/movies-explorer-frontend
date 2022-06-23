@@ -2,7 +2,8 @@ import React from 'react';
 import Logo from '../../images/logo/logo.svg';
 import {Link} from "react-router-dom";
 
-function EntryWindows({children, isLocation, isButton, onSubmitForm}) {
+function EntryWindows({children, isLocation, isButton, onSubmitForm, isValidForm}) {
+  console.log(isLocation)
   return (
     <main className='entry-windows'>
       <img className='entry-windows__logo' src={Logo} alt='Изображение логотипа'/>
@@ -11,11 +12,19 @@ function EntryWindows({children, isLocation, isButton, onSubmitForm}) {
         {children}
         <button
           className={`entry-windows__form-button
-          ${isLocation === '/singin'?' entry-windows__form-button_theme_login':''}`}
+          ${isLocation === '/singin'?' entry-windows__form-button_theme_login ':' '}
+          ${isValidForm?'':'entry-windows__form-button_theme_error'}
+          `}
           type='submit'>{isButton}</button>
-        <p className='entry-windows__question'>Уже зарегистрированы?&nbsp;&nbsp;
-          <Link className='entry-windows__link' to='/signin'>Войти</Link>
-        </p>
+        {isLocation === '/signup'?
+          <p className='entry-windows__question'>Уже зарегистрированы?&nbsp;&nbsp;
+            <Link className='entry-windows__link' to='/signin'>Войти</Link>
+          </p>:
+          <p className='entry-windows__question'>Ещё не зарегистрированы?&nbsp;&nbsp;
+            <Link className='entry-windows__link' to='/signup'>Регистрация</Link>
+          </p>
+        }
+
       </form>
     </main>
   );

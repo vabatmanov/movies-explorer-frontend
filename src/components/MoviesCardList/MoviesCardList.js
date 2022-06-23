@@ -7,8 +7,8 @@ function MoviesCardList({
                           isMovieFound,
                           isShortMovieFilter,
                           isFirstLoadMovie,
-                          isPreloader
-                        }) {
+                          isPreloader,
+                          isSaveMovieList}) {
   const isMovies = useLocation().pathname === '/movies';
 
   return (
@@ -21,12 +21,14 @@ function MoviesCardList({
                 <MoviesCard
                   key={item.movieId ? item.movieId : item.id}
                   {...item}
+                  isSaveMovieList={isSaveMovieList}
                 />:false)
             } else {
               return (
                 <MoviesCard
                   key={item.movieId ? item.movieId : item.id}
                   {...item}
+                  isSaveMovieList={isSaveMovieList}
                 />)
             }
         })

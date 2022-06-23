@@ -43,11 +43,12 @@ class Auth {
     }))
   }
 
-  register(email, password){
+  register(email, password, name){
     return this._promiseResult(fetch(`${this._baseUrl}signup`, {
       method: 'POST',
+      credentials: 'include',
       headers: {...this._headers},
-      body: JSON.stringify({password, email})
+      body: JSON.stringify({password, email, name})
     }))
   }
 }

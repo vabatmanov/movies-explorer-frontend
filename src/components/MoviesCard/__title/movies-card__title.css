@@ -1,6 +1,10 @@
 .movies-card__title {
   font: normal 500 15px/18px Inter, Arial, sans-serif;
+  width: 100%;
   color: #000000;
   margin: 0;
   grid-column: 1/2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

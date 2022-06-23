@@ -113,6 +113,7 @@
 @import './components/Profile/__link/profile__link.css';
 @import './components/Profile/__form/profile__form.css';
 @import './components/Profile/__label/profile__label.css';
+@import './components/Profile/__label/_error/profile__label_error.css';
 
 @import './components/Error/Error.css';
 @import './components/Error/__link/error__link.css';
@@ -125,15 +126,25 @@
 @import './components/EntryWindows/__title/entry-windows__title.css';
 @import './components/EntryWindows/__form-button/entry-windows__form-button.css';
 @import './components/EntryWindows/__form-button/_theme/entry-windows__form-button_theme_login.css';
+@import './components/EntryWindows/__form-button/_theme/entry-windows__form-button_theme_error.css';
 @import './components/EntryWindows/__question/entry-windows__question.css';
 @import './components/EntryWindows/__link/entry-windows__link.css';
 
 @import './components/Register/Register.css';
 @import './components/Register/__label/register__label.css';
 @import './components/Register/__input/register__input.css';
+@import './components/Register/__input/_error/register__input_error.css';
 @import './components/Register/__error-text/register__error-text.css';
 
 @import './components/Login/Login.css';
 @import './components/Login/__error-text/login__error-text.css';
 @import './components/Login/__input/login__input.css';
 @import './components/Login/__label/login__label.css';
+@import 'components/Login/__input/_error/login__input_error.css';
+
+@import './components/Popup/Popup.css';
+@import './components/Popup/_opened/popup_opened.css';
+@import './components/Popup/__text/popup__text.css';
+
+
+
