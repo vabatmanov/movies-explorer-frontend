@@ -8,12 +8,13 @@ function MoviesCardList({
                           isShortMovieFilter,
                           isFirstLoadMovie,
                           isPreloader,
-                          isSaveMovieList}) {
+                          isSaveMovieList,
+                          isLocation}) {
   const isMovies = useLocation().pathname === '/movies';
 
   return (
     <>
-      {isFirstLoadMovie ? <ul className={`movies-card-list ${isMovies ? null : 'movies-card-list_theme_padding-long'}`}>
+      {isFirstLoadMovie ? <ul className={`movies-card-list ${isMovies ? '' : 'movies-card-list_theme_padding-long'}`}>
         {(isMovieFound.length > 0) && isMovieFound.map(item => {
             if (isShortMovieFilter) {
               return (
@@ -22,6 +23,7 @@ function MoviesCardList({
                   key={item.movieId ? item.movieId : item.id}
                   {...item}
                   isSaveMovieList={isSaveMovieList}
+                  isLocation={isLocation}
                 />:false)
             } else {
               return (
@@ -29,6 +31,7 @@ function MoviesCardList({
                   key={item.movieId ? item.movieId : item.id}
                   {...item}
                   isSaveMovieList={isSaveMovieList}
+                  isLocation={isLocation}
                 />)
             }
         })

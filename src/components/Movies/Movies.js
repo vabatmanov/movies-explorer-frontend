@@ -13,12 +13,16 @@ function Movies(props) {
         onFirstLoadMovie={props.onFirstLoadMovie}
         onPreloader={props.onPreloader}
         handleFindFilms={props.handleFindFilms}
+        onHandlePopupOpen={props.onHandlePopupOpen}
+        isLocation={props.isLocation}
               />
       <MoviesCardList
+        isSaveMovieList={props.isSaveMovieList}
         isMovieFound={props.isMovieFound}
         isShortMovieFilter={props.isShortMovieFilter}
         isFirstLoadMovie={props.isFirstLoadMovie}
         isPreloader={props.isPreloader}
+        isLocation={props.isLocation}
       />
     </main>
   );

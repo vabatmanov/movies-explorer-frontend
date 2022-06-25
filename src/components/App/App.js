@@ -40,7 +40,8 @@ function App() {
   const [shortSaveMovieFilter, setShortSaveMovieFilter] = useState(false); //строка поиска
   const [firstLoadSaveMovie, setFirstLoadSaveMovie] = useState(false); //первая загрузка SaveMovie
 
-
+  //const [movieSearchText, setMovieSearchText] = useState(''); //найденные фильмы в закладках
+  //const [saveMovieSearchText, setSaveMovieSearchText] = useState(''); //найденные фильмы в закладках
 
   let navigate = useNavigate();
   const isLocation = useLocation().pathname;
@@ -48,7 +49,7 @@ function App() {
   useEffect(() => {
     if (!loggedIn) {
       auth.checkToken()
-        .then((data) => {
+        .then(() => {
           console.log('Успешная авторизация, по JWT');
           setLoggedIn(true);
         })
@@ -78,15 +79,15 @@ function App() {
           const newMovie = movie.map((item) =>  {
             return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
           })
-          const newSaveMovie = saveMovie.map((item) =>  {
-            return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
-          })
+         /* const newSaveMovie = saveMovie.map((item) =>  {
+            return {...item, 'image':{ 'url': Constants.IMG_SERVER + item.image}}
+          })*/
 
           localStorage.movie = JSON.stringify(newMovie);
-          localStorage.saveMovie = JSON.stringify(newSaveMovie);
+          localStorage.saveMovie = JSON.stringify(saveMovie);
 
           setMovieList(newMovie);
-          setSaveMovieList(newSaveMovie)
+          setSaveMovieList(saveMovie)
         })
         .catch(error => handlePopupOpen(`${error}. Во время запроса произошла ошибка. Возможно, проблема с
         соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`))
@@ -107,7 +108,7 @@ function App() {
 
   function handleLogin ({email, password}) {
     auth.authorize(email, password)
-      .then((data) => {
+      .then(() => {
         setLoggedIn(true);
         navigate('/movies', { replace: true });
       })
@@ -152,6 +153,10 @@ function App() {
     },5000);
   }
 
+  function handleUpdateLike() {
+
+  }
+
   function handleUpdateProfile (userData) {
     api.editProfile(userData)
       .then((userData) => {
@@ -169,24 +174,28 @@ function App() {
         return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
       })
     );
-    localStorage.movieSearchText = searchText;
+
     localStorage.shortMovieFilter = JSON.stringify(shortMovieFilter);
     setShortMovieFilter(JSON.parse(localStorage.shortMovieFilter));
     setMovieFound(JSON.parse(localStorage.movieFound));
     setPreloader(false);
+
+    localStorage.movieSearchText = searchText;
   }
 
   function handleFindSaveMovies(searchText) {
-    localStorage.saveMovieFound = JSON.stringify(
-      saveMovieList.filter(item => {
-        return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
-      })
-    );
+      localStorage.saveMovieFound = JSON.stringify(
+        saveMovieList.filter(item => {
+          return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
+        })
+      );
+
+      localStorage.shortSaveMovieFilter = JSON.stringify(shortMovieFilter);
+      setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
+      setSaveMovieFound(JSON.parse(localStorage.saveMovieFound));
+      setPreloader(false);
+
     localStorage.saveMovieSearchText = searchText;
-    localStorage.shortSaveMovieFilter = JSON.stringify(shortMovieFilter);
-    setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
-    setSaveMovieFound(localStorage.saveMovieFound)
-    setPreloader(false);
   }
 
   return (
@@ -206,7 +215,7 @@ function App() {
               <Movies
                 /*isMovieList={movieList}
                 isSaveMovieList={saveMovieList}*/
-
+                isSaveMovieList = {saveMovieList}
                 isMovieFound={movieFound}
                 isMovieSearchText={localStorage.movieSearchText}
                 isShortMovieFilter={shortMovieFilter}
@@ -217,8 +226,10 @@ function App() {
 
                 isPreloader={preloader}
                 onPreloader={setPreloader}
+                isLocation={isLocation}
 
                 handleFindFilms={handleFindMovies}
+                onHandlePopupOpen={handlePopupOpen}
               />
             </ProtectedRoute>
           } />
@@ -237,8 +248,10 @@ function App() {
 
                 isPreloader={preloader}
                 onPreloader={setPreloader}
+                isLocation={isLocation}
 
                 handleFindFilms={handleFindSaveMovies}
+                onHandlePopupOpen={handlePopupOpen}
               />
             </ProtectedRoute>
           } />}
