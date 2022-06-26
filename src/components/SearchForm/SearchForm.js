@@ -27,7 +27,6 @@ function SearchForm({isMovieSearchText,isShortMovieFilter, onFirstLoadMovie,onPr
 
   useEffect(() => {
     setSearchText(isMovieSearchText)
-    console.log('замена')
   },[isMovieSearchText, isLocation])
 
 

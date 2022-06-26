@@ -23,6 +23,7 @@ function Movies(props) {
         isFirstLoadMovie={props.isFirstLoadMovie}
         isPreloader={props.isPreloader}
         isLocation={props.isLocation}
+        onHandleUpdateLike={props.onHandleUpdateLike}
       />
     </main>
   );

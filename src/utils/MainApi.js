@@ -52,7 +52,7 @@ class MainApi {
   }
 
   removeMovie(movieData) {
-    return this._promiseResult(fetch(`${this._address}cards/${movieData}`, {
+    return this._promiseResult(fetch(`${this._address}movies/${movieData}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: {

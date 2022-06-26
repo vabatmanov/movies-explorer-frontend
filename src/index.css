@@ -92,6 +92,7 @@
 @import './components/FilterCheckbox/__text/filter-checkbox__text.css';
 
 @import './components/MoviesCardList/MoviesCardList.css';
+@import './components/MoviesCardList/__text/movie-card-list__text.css';
 @import './components/MoviesCardList/__button/movies-card-list__button.css';
 @import './components/MoviesCardList/_theme/movies-card-list_theme_padding-long.css';
 

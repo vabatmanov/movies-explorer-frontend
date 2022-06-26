@@ -40,9 +40,6 @@ function App() {
   const [shortSaveMovieFilter, setShortSaveMovieFilter] = useState(false); //строка поиска
   const [firstLoadSaveMovie, setFirstLoadSaveMovie] = useState(false); //первая загрузка SaveMovie
 
-  //const [movieSearchText, setMovieSearchText] = useState(''); //найденные фильмы в закладках
-  //const [saveMovieSearchText, setSaveMovieSearchText] = useState(''); //найденные фильмы в закладках
-
   let navigate = useNavigate();
   const isLocation = useLocation().pathname;
 
@@ -87,6 +84,7 @@ function App() {
           localStorage.saveMovie = JSON.stringify(saveMovie);
 
           setMovieList(newMovie);
+
           setSaveMovieList(saveMovie)
         })
         .catch(error => handlePopupOpen(`${error}. Во время запроса произошла ошибка. Возможно, проблема с
@@ -153,8 +151,61 @@ function App() {
     },5000);
   }
 
-  function handleUpdateLike() {
+  function handleUpdateLike(card) {
+    const film = saveMovieList.find((item) => {
+      return (item.movieId === card.movieId)
+    })
+    if (card._id) {
+      handleDeleteCard(film._id);
+    } else {
 
+      if (!film) {
+        handleAddCard({
+          country: card.country || 'unknown',
+          director: card.director,
+          duration: card.duration,
+          year: card.year,
+          description: card.description,
+          image: card.image.url,
+          trailerLink: card.trailerLink,
+          nameRU: card.nameRU,
+          nameEN: card.nameEN,
+          thumbnail: Constants.IMG_SERVER + card.image.formats.thumbnail.url,
+          movieId: card.id,
+        })
+      } else {
+        handleDeleteCard(film._id);
+      }
+    }
+  }
+
+
+  function handleAddCard(card) {
+    api.addMovie(card)
+      .then((data) => {
+        setSaveMovieList([...saveMovieList, {...data}])
+      })
+      .catch((error) => {
+        handlePopupOpen(`${error}, лайк не установлен.`);
+      })
+  }
+
+  function handleDeleteCard(cardId) {
+    api.removeMovie(cardId)
+      .then(() => {
+        const newArray = saveMovieList.filter((item) => {
+          return (item._id !== cardId)
+        })
+
+        const newArrayFound = saveMovieFound.filter((item) => {
+          return (item._id !== cardId)
+        })
+        setSaveMovieList(newArray);
+        setSaveMovieFound(newArrayFound);
+      })
+      .catch((error) => {
+        handlePopupOpen(`${error}, карточка не удалена.`);
+      })
   }
 
   function handleUpdateProfile (userData) {
@@ -230,6 +281,7 @@ function App() {
 
                 handleFindFilms={handleFindMovies}
                 onHandlePopupOpen={handlePopupOpen}
+                onHandleUpdateLike={handleUpdateLike}
               />
             </ProtectedRoute>
           } />
@@ -252,6 +304,7 @@ function App() {
 
                 handleFindFilms={handleFindSaveMovies}
                 onHandlePopupOpen={handlePopupOpen}
+                onHandleUpdateLike={handleUpdateLike}
               />
             </ProtectedRoute>
           } />}
