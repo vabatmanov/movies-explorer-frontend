@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 import {useLocation} from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
+import {useWindowSize} from "../../hooks/useWindowsSize";
 
 function MoviesCardList({
                           isMovieFound,
@@ -12,6 +13,20 @@ function MoviesCardList({
                           isLocation,
                           onHandleUpdateLike}) {
   const isMovies = useLocation().pathname === '/movies';
+  //const width = useWindowSize();
+
+/*  const [defaultCount, setDefaultCount] = useState(0);
+  //setDefaultCount(() => )
+  switch(true) {
+    case (width > 609):
+      console.log( '3' );
+      break;
+    case (width > 609):
+      console.log( '2' );
+      break;
+    default:
+      console.log( "1" );
+  }*/
 
   return (
     <>
