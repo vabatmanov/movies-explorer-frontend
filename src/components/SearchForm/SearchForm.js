@@ -3,8 +3,10 @@ import FindLogo from '../../images/find-logo.svg';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import {useFormWithValidation} from "../../hooks/useFormWithValidation";
 
-function SearchForm({isMovieSearchText,isShortMovieFilter, onFirstLoadMovie,onPreloader,
-                      handleFindFilms, onShortMovieFilter, onHandlePopupOpen,isLocation}) {
+function SearchForm({
+                      isMovieSearchText, isShortMovieFilter, onFirstLoadMovie, onPreloader,
+                      handleFindFilms, onShortMovieFilter, onHandlePopupOpen, isLocation
+                    }) {
 
   const [searchText, setSearchText] = useState('')
   const valid = useFormWithValidation();
@@ -16,7 +18,8 @@ function SearchForm({isMovieSearchText,isShortMovieFilter, onFirstLoadMovie,onPr
       onPreloader(true);
       handleFindFilms(searchText);
     } else {
-      onHandlePopupOpen(valid.errors['search-input-find']?valid.errors['search-input-find']:'Нужно ввести ключевое слово')
+      onHandlePopupOpen(valid.errors['search-input-find'] ? valid.errors['search-input-find']
+        : 'Нужно ввести ключевое слово')
     }
   }
 
@@ -27,7 +30,7 @@ function SearchForm({isMovieSearchText,isShortMovieFilter, onFirstLoadMovie,onPr
 
   useEffect(() => {
     setSearchText(isMovieSearchText)
-  },[isMovieSearchText, isLocation])
+  }, [isMovieSearchText, isLocation])
 
 
   return (
@@ -36,7 +39,6 @@ function SearchForm({isMovieSearchText,isShortMovieFilter, onFirstLoadMovie,onPr
         <img className='search-form__logo' src={FindLogo} alt='Изображение логотипа строки поиска'/>
         <input type="text" className='search-form__input-find'
                name="search-input-find"
-               minLength={2}
                maxLength={40}
                required
                placeholder='Фильм'

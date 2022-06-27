@@ -1,6 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-//import LogoLike from '../../images/button-like/like.svg';
-//import Img from '../../images/test-img.png';
+import React from 'react';
+
 
 function MoviesCard({item, isSaveMovieList, isLocation, onHandleUpdateLike}) {
   const card = item;

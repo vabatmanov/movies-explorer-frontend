@@ -1,6 +1,6 @@
 import './App.css';
 import Header from "../Header/Header";
-import Main from  "../Main/Main"
+import Main from "../Main/Main"
 import SideMenu from "../SideMenu/SideMenu";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
@@ -51,7 +51,7 @@ function App() {
           setLoggedIn(true);
         })
         .catch(error => console.log(error))
-        .finally(()=> {
+        .finally(() => {
           localStorage.movieSearchText = '';
           localStorage.shortMovieFilter = JSON.stringify(false);
           localStorage.movieFound = JSON.stringify([]);
@@ -63,7 +63,7 @@ function App() {
           setCheckJwt(true);
         })
     }
-  },[])
+  }, [])
 
 
   useEffect(() => {
@@ -73,12 +73,9 @@ function App() {
           serCurrentUser({...userData});
 
           //загрузка данных при первом входе.
-          const newMovie = movie.map((item) =>  {
-            return {...item, 'image':{...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
+          const newMovie = movie.map((item) => {
+            return {...item, 'image': {...item.image, 'url': Constants.IMG_SERVER + item.image.url}}
           })
-         /* const newSaveMovie = saveMovie.map((item) =>  {
-            return {...item, 'image':{ 'url': Constants.IMG_SERVER + item.image}}
-          })*/
 
           localStorage.movie = JSON.stringify(newMovie);
           localStorage.saveMovie = JSON.stringify(saveMovie);
@@ -104,11 +101,11 @@ function App() {
     setIsSideMenu(false);
   }
 
-  function handleLogin ({email, password}) {
+  function handleLogin({email, password}) {
     auth.authorize(email, password)
       .then(() => {
         setLoggedIn(true);
-        navigate('/movies', { replace: true });
+        navigate('/movies', {replace: true});
       })
       .catch(error => {
         setEnterError(true);
@@ -119,7 +116,7 @@ function App() {
   function handleRegister({email, password, name}) {
     auth.register(email, password, name)
       .then(() => {
-      return (auth.authorize(email, password))
+        return (auth.authorize(email, password))
       })
       .then(() => {
         setLoggedIn(true);
@@ -131,24 +128,24 @@ function App() {
       });
   }
 
-  function handleLogOut () {
+  function handleLogOut() {
     auth.logOff()
       .then(() => {
         setLoggedIn(false);
-        navigate('./', { replace: true });
+        navigate('./', {replace: true});
       })
       .catch(error => {
         handlePopupOpen(`${error}, выход отменен`);
       });
   }
 
-  function handlePopupOpen (errorText) {
+  function handlePopupOpen(errorText) {
     setPopupText(errorText);
     setPopupOpen(true);
 
     setTimeout(() => {
       setPopupOpen(false);
-    },5000);
+    }, 5000);
   }
 
   function handleUpdateLike(card) {
@@ -208,7 +205,7 @@ function App() {
       })
   }
 
-  function handleUpdateProfile (userData) {
+  function handleUpdateProfile(userData) {
     api.editProfile(userData)
       .then((userData) => {
         serCurrentUser(userData);
@@ -235,16 +232,16 @@ function App() {
   }
 
   function handleFindSaveMovies(searchText) {
-      localStorage.saveMovieFound = JSON.stringify(
-        saveMovieList.filter(item => {
-          return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
-        })
-      );
+    localStorage.saveMovieFound = JSON.stringify(
+      saveMovieList.filter(item => {
+        return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
+      })
+    );
 
-      localStorage.shortSaveMovieFilter = JSON.stringify(shortMovieFilter);
-      setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
-      setSaveMovieFound(JSON.parse(localStorage.saveMovieFound));
-      setPreloader(false);
+    localStorage.shortSaveMovieFilter = JSON.stringify(shortSaveMovieFilter);
+    setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
+    setSaveMovieFound(JSON.parse(localStorage.saveMovieFound));
+    setPreloader(false);
 
     localStorage.saveMovieSearchText = searchText;
   }
@@ -254,11 +251,11 @@ function App() {
 
       {checkJwt && <div className="App">
         <Popup isPopupOpen={popupOpen} isErrorText={popup}/>
-        {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation)?'':(
-        <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>)}
+        {Constants.HEADER_VISIBLE_DISABLE.includes(isLocation) ? '' : (
+          <Header loggedIn={loggedIn} onSideMenuOpen={handleSideMenuClicked}/>)}
         <Routes>
           <Route path="/" element={
-              <Main/>
+            <Main/>
           }/>
 
           <Route path="/movies" element={
@@ -266,7 +263,7 @@ function App() {
               <Movies
                 /*isMovieList={movieList}
                 isSaveMovieList={saveMovieList}*/
-                isSaveMovieList = {saveMovieList}
+                isSaveMovieList={saveMovieList}
                 isMovieFound={movieFound}
                 isMovieSearchText={localStorage.movieSearchText}
                 isShortMovieFilter={shortMovieFilter}
@@ -284,12 +281,12 @@ function App() {
                 onHandleUpdateLike={handleUpdateLike}
               />
             </ProtectedRoute>
-          } />
+          }/>
 
           {<Route path="/saved-movies" element={
             <ProtectedRoute loggedIn={loggedIn}>
               <Movies
-                isSaveMovieList = {saveMovieList}
+                isSaveMovieList={saveMovieList}
                 isMovieFound={saveMovieFound}
                 isMovieSearchText={localStorage.saveMovieSearchText}
                 isShortMovieFilter={shortSaveMovieFilter}
@@ -307,7 +304,7 @@ function App() {
                 onHandleUpdateLike={handleUpdateLike}
               />
             </ProtectedRoute>
-          } />}
+          }/>}
 
           <Route path="/profile" element={
             <ProtectedRoute loggedIn={loggedIn}>
@@ -316,7 +313,7 @@ function App() {
                 onUpdateProfile={handleUpdateProfile}
               />
             </ProtectedRoute>
-          } />
+          }/>
 
 
           <Route path="/signup" element={
@@ -335,12 +332,12 @@ function App() {
               isEnterError={enterError}
             />}
           />
-          <Route path="/error" element={<Error/>} />
-          <Route path="/*" element={<Navigate to="/error"/>} />
+          <Route path="/error" element={<Error/>}/>
+          <Route path="/*" element={<Navigate to="/error"/>}/>
 
         </Routes>
         <SideMenu isOpen={isSideMenu} onClose={allWindowsClose}/>
-        {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation)?'':<Footer/>}
+        {Constants.FOOTER_VISIBLE_DISABLE.includes(isLocation) ? '' : <Footer/>}
       </div>}
     </CurrentUserContext.Provider>
   );

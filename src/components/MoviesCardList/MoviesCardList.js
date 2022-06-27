@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
-import {useLocation} from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
-import {useWindowSize} from "../../hooks/useWindowsSize";
 
 function MoviesCardList({
                           isMovieFound,
@@ -11,27 +9,41 @@ function MoviesCardList({
                           isPreloader,
                           isSaveMovieList,
                           isLocation,
-                          onHandleUpdateLike}) {
-  const isMovies = useLocation().pathname === '/movies';
-  //const width = useWindowSize();
+                          onHandleUpdateLike
+                        }) {
+  const isMovies = isLocation === '/movies';
 
-/*  const [defaultCount, setDefaultCount] = useState(0);
-  //setDefaultCount(() => )
-  switch(true) {
-    case (width > 609):
-      console.log( '3' );
-      break;
-    case (width > 609):
-      console.log( '2' );
-      break;
-    default:
-      console.log( "1" );
-  }*/
+  const [count, setCount] = useState(countCard(true))
+
+  function countCard(type) {
+    switch (true) {
+      case (window.innerWidth >= 1028):
+        if (type) {
+          return 12;
+        } else {
+          setCount(count + 3)
+        }
+        break;
+      case (window.innerWidth >= 610 && window.innerWidth <= 1027):
+        if (type) {
+          return 8;
+        } else {
+          setCount(count + 2)
+        }
+        break;
+      default:
+        if (type) {
+          return 5;
+        } else {
+          setCount(count + 2)
+        }
+    }
+  }
 
   return (
     <>
       {isFirstLoadMovie ? <ul className={`movies-card-list ${isMovies ? '' : 'movies-card-list_theme_padding-long'}`}>
-        {(isMovieFound.length > 0) ? isMovieFound.map(item => {
+        {(isMovieFound.length > 0) ? isMovieFound.slice(0, count).map(item => {
           if (isShortMovieFilter) {
             return (
               (item.duration < 41) ?
@@ -52,12 +64,18 @@ function MoviesCardList({
                 onHandleUpdateLike={onHandleUpdateLike}
               />)
           }
-        }):<p className='movie-card-list__text'>Ничего не найдено</p>
+        }) : <p className='movie-card-list__text'>Ничего не найдено</p>
 
         }
       </ul> : ''}
       <Preloader isPreloader={isPreloader}/>
-      {(isFirstLoadMovie && isMovies) ? <button className='movies-card-list__button' type="button">Ещё</button> : null}
+      {(isFirstLoadMovie && isMovies && (isMovieFound.length > count)) ?
+        <button className='movies-card-list__button'
+                type="button"
+                onClick={() => {
+                  countCard(false)
+                }}>Ещё</button>
+        : null}
     </>
   );
 }
