@@ -3,7 +3,6 @@ import Logo from '../../images/logo/logo.svg';
 import {Link} from "react-router-dom";
 
 function EntryWindows({children, isLocation, isButton, onSubmitForm, isValidForm}) {
-  console.log(isLocation)
   return (
     <main className='entry-windows'>
       <img className='entry-windows__logo' src={Logo} alt='Изображение логотипа'/>

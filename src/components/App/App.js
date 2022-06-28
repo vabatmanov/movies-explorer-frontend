@@ -47,7 +47,6 @@ function App() {
     if (!loggedIn) {
       auth.checkToken()
         .then(() => {
-          console.log('Успешная авторизация, по JWT');
           setLoggedIn(true);
         })
         .catch(error => console.log(error))
@@ -86,7 +85,6 @@ function App() {
         })
         .catch(error => handlePopupOpen(`${error}. Во время запроса произошла ошибка. Возможно, проблема с
         соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`))
-      console.log('Я попал во второй юз эффект');
     }
   }, [loggedIn])
 

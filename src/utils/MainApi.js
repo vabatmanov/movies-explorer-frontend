@@ -63,6 +63,6 @@ class MainApi {
 }
 
 const api = new MainApi({
-  address: 'http://localhost:3001/'
+  address: 'https://api.vabatmanovdip.nomoredomains.work/api/'
 });
 export default api;

@@ -53,7 +53,7 @@ class Auth {
   }
 }
 
-const auth = new Auth('http://localhost:3001/');
+const auth = new Auth('https://api.vabatmanovdip.nomoredomains.work/api/');
 //http://localhost:3000/
 //https://auth.nomoreparties.co/
 //https://api.vabatmanov.nomoredomains.work/
