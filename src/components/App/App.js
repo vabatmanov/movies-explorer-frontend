@@ -32,9 +32,9 @@ function App() {
   const [movieList, setMovieList] = useState([]); //список фильмов BestFilms
   const [saveMovieList, setSaveMovieList] = useState([]); //список фильмов в закладках
 
-  const [movieFound, setMovieFound] = useState([]); //найденные фильмы
-  const [shortMovieFilter, setShortMovieFilter] = useState(false); //состояние checkbox movie
-  const [firstLoadMovie, setFirstLoadMovie] = useState(false); //первая загрузка Movie была ?
+  const [movieFound, setMovieFound] = useState(localStorage.movieFound?JSON.parse(localStorage.movieFound):[]); //найденные фильмы
+  const [shortMovieFilter, setShortMovieFilter] = useState(localStorage.shortMovieFilter?JSON.parse(localStorage.shortMovieFilter):false); //состояние checkbox movie
+  const [firstLoadMovie, setFirstLoadMovie] = useState(localStorage.firstLoadMovie?JSON.parse(localStorage.firstLoadMovie):false); //первая загрузка Movie была ?
 
   const [saveMovieFound, setSaveMovieFound] = useState([]); //найденные фильмы в закладках
   const [shortSaveMovieFilter, setShortSaveMovieFilter] = useState(false); //строка поиска
@@ -51,9 +51,13 @@ function App() {
         })
         .catch(error => console.log(error))
         .finally(() => {
-          localStorage.movieSearchText = '';
-          localStorage.shortMovieFilter = JSON.stringify(false);
-          localStorage.movieFound = JSON.stringify([]);
+          //localStorage.movieSearchText = '';
+          //localStorage.shortMovieFilter = JSON.stringify(false);
+          //localStorage.movieFound = JSON.stringify([]);
+    /*    setMovieFound(localStorage.movieFound?JSON.parse(localStorage.movieFound):[])
+          setShortMovieFilter(localStorage.movieFound?JSON.parse(localStorage.movieFound):false)
+          setFirstLoadMovie(localStorage.firstLoadMovie?JSON.parse(localStorage.firstLoadMovie):false)*/
+
 
           localStorage.saveMovieSearchText = '';
           localStorage.shortSaveMovieFilter = JSON.stringify(false);
@@ -80,8 +84,8 @@ function App() {
           localStorage.saveMovie = JSON.stringify(saveMovie);
 
           setMovieList(newMovie);
-
           setSaveMovieList(saveMovie)
+          setSaveMovieFound(saveMovie);
         })
         .catch(error => handlePopupOpen(`${error}. Во время запроса произошла ошибка. Возможно, проблема с
         соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`))
@@ -130,6 +134,11 @@ function App() {
     auth.logOff()
       .then(() => {
         setLoggedIn(false);
+        localStorage.clear();
+        setSaveMovieList([]);
+        setMovieFound([])
+        setShortMovieFilter(false);
+        serCurrentUser({});
         navigate('./', {replace: true});
       })
       .catch(error => {
@@ -157,7 +166,7 @@ function App() {
       if (!film) {
         handleAddCard({
           country: card.country || 'unknown',
-          director: card.director,
+          director: card.director  || 'unknown',
           duration: card.duration,
           year: card.year,
           description: card.description,
@@ -214,6 +223,18 @@ function App() {
       })
   }
 
+  function handleFirstLoadMovie(e) {
+    if (!firstLoadMovie) {
+      localStorage.firstLoadMovie = JSON.stringify(true);
+      setFirstLoadMovie(true);
+    }
+  }
+
+  function handleChangeShortMovie() {
+    localStorage.shortMovieFilter = JSON.stringify(!shortMovieFilter);
+    setShortMovieFilter(!shortMovieFilter);
+  }
+
   function handleFindMovies(searchText) {
     localStorage.movieFound = JSON.stringify(
       movieList.filter(item => {
@@ -265,10 +286,10 @@ function App() {
                 isMovieFound={movieFound}
                 isMovieSearchText={localStorage.movieSearchText}
                 isShortMovieFilter={shortMovieFilter}
-                onShortMovieFilter={setShortMovieFilter}
+                onShortMovieFilter={handleChangeShortMovie}
 
                 isFirstLoadMovie={firstLoadMovie}
-                onFirstLoadMovie={setFirstLoadMovie}
+                onFirstLoadMovie={handleFirstLoadMovie}
 
                 isPreloader={preloader}
                 onPreloader={setPreloader}
@@ -286,6 +307,7 @@ function App() {
               <Movies
                 isSaveMovieList={saveMovieList}
                 isMovieFound={saveMovieFound}
+                onMovieFound={setSaveMovieFound}
                 isMovieSearchText={localStorage.saveMovieSearchText}
                 isShortMovieFilter={shortSaveMovieFilter}
                 onShortMovieFilter={setShortSaveMovieFilter}
@@ -313,9 +335,10 @@ function App() {
             </ProtectedRoute>
           }/>
 
-
           <Route path="/signup" element={
             <Register
+              isLoggedIn={loggedIn}
+              onNavigate={navigate}
               isLocation={isLocation}
               isButton={Constants.REG_BUTTON}
               onRegister={handleRegister}
@@ -324,6 +347,8 @@ function App() {
           />
           <Route path="/signin" element={
             <Login
+              isLoggedIn={loggedIn}
+              onNavigate={navigate}
               isLocation={isLocation}
               isButton={Constants.ENTER_BUTTON}
               onLogin={handleLogin}

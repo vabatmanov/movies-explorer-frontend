@@ -4,6 +4,7 @@
 @import './components/Header/Header.css';
 @import "./components/Header/_theme/Header_theme_pink.css";
 @import "./components/Header/__link/header__link.css";
+@import "./components/Header/__logo-link/header__logo-link.css";
 @import "./components/Header/__button-menu/header__button-menu.css";
 
 @import './components/Navigation/Navigation.css';

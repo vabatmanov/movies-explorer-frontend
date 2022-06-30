@@ -24,6 +24,7 @@ function Movies(props) {
         isPreloader={props.isPreloader}
         isLocation={props.isLocation}
         onHandleUpdateLike={props.onHandleUpdateLike}
+        onMovieFound={props.onMovieFound}
       />
     </main>
   );

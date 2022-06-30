@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function MoviesCard({item, isSaveMovieList, isLocation, onHandleUpdateLike}) {
   const card = item;
   const likeStyle = isLocation === '/movies'?'movies-card__like_status_liked':'movies-card__like_status_disliked';
@@ -25,7 +24,9 @@ function MoviesCard({item, isSaveMovieList, isLocation, onHandleUpdateLike}) {
         <button className={`movies-card__like ${like?likeStyle:''}`} type="button" onClick={handleClickLike}>
         </button>
       </div>
-      <img className='movies-card__image' src={item.image.url?item.image.url:item.image} alt='Обложка фильма'/>
+      <a className='movies-card__link' target="_blank" href={item.trailerLink} rel="noreferrer" >
+        <img className='movies-card__image' src={item.image.url?item.image.url:item.image} alt='Обложка фильма'/>
+      </a>
     </li>
   );
 }

@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
+import Constants from "../../utils/Constatns";
 
 function MoviesCardList({
                           isMovieFound,
@@ -9,67 +10,67 @@ function MoviesCardList({
                           isPreloader,
                           isSaveMovieList,
                           isLocation,
-                          onHandleUpdateLike
+                          onHandleUpdateLike,
+                          onMovieFound
                         }) {
-  const isMovies = isLocation === '/movies';
-
+  const isMoviesLocation = isLocation === '/movies';
   const [count, setCount] = useState(countCard(true))
 
+
   function countCard(type) {
+    if (isMoviesLocation) {
+      return (Constants.MAX_COUNT_FILMS);
+    }
+
     switch (true) {
-      case (window.innerWidth >= 1028):
+      case (window.innerWidth >= Constants.WIN_PC.MIN):
         if (type) {
-          return 12;
+          return Constants.COUNT_DEF_PC;
         } else {
-          setCount(count + 3)
+          setCount(count + Constants.COUNT_ADD_COUNT_PC)
         }
         break;
-      case (window.innerWidth >= 610 && window.innerWidth <= 1027):
+      case (window.innerWidth >= Constants.WIN_TABLET.MIN && window.innerWidth <= Constants.WIN_TABLET.MAX):
         if (type) {
-          return 8;
+          return Constants.COUNT_DEF_TABLET;
         } else {
-          setCount(count + 2)
+          setCount(count + Constants.COUNT_ADD_COUNT_TABLET)
         }
         break;
       default:
         if (type) {
-          return 5;
+          return Constants.COUNT_DEF_MOBILE;
         } else {
-          setCount(count + 2)
+          setCount(count + Constants.COUNT_ADD_COUNT_MOBILE)
         }
     }
   }
 
+  useEffect(() => {
+    if (!isMoviesLocation && isFirstLoadMovie) {
+      onMovieFound(isSaveMovieList);
+    }
+  },[isMoviesLocation])
+
   return (
     <>
-      {isFirstLoadMovie ? <ul className={`movies-card-list ${isMovies ? '' : 'movies-card-list_theme_padding-long'}`}>
-        {(isMovieFound.length > 0) ? isMovieFound.slice(0, count).map(item => {
-          if (isShortMovieFilter) {
-            return (
-              (item.duration < 41) ?
-                <MoviesCard
-                  key={item.movieId ? item.movieId : item.id}
-                  item={item}
-                  isSaveMovieList={isSaveMovieList}
-                  isLocation={isLocation}
-                  onHandleUpdateLike={onHandleUpdateLike}
-                /> : false)
-          } else {
-            return (
-              <MoviesCard
-                key={item.movieId ? item.movieId : item.id}
-                item={item}
-                isSaveMovieList={isSaveMovieList}
-                isLocation={isLocation}
-                onHandleUpdateLike={onHandleUpdateLike}
-              />)
-          }
+      {(isFirstLoadMovie || (!isMoviesLocation))? <ul className={`movies-card-list ${isMoviesLocation ? '' : 'movies-card-list_theme_padding-long'}`}>
+        {(isMovieFound.length > 0) ? (isShortMovieFilter ? (
+          isMovieFound.filter(item => item.duration < Constants.FILM_DURATION)).slice(0, count) : isMovieFound.slice(0, count)).map(item => {
+          return (
+            <MoviesCard
+              key={item.movieId ? item.movieId : item.id}
+              item={item}
+              isSaveMovieList={isSaveMovieList}
+              isLocation={isLocation}
+              onHandleUpdateLike={onHandleUpdateLike}
+            />)
         }) : <p className='movie-card-list__text'>Ничего не найдено</p>
-
         }
       </ul> : ''}
+
       <Preloader isPreloader={isPreloader}/>
-      {(isFirstLoadMovie && isMovies && (isMovieFound.length > count)) ?
+      {(isFirstLoadMovie && isMoviesLocation && ((isShortMovieFilter?isMovieFound.filter(item => item.duration < Constants.FILM_DURATION):isMovieFound.length) > count)) ?
         <button className='movies-card-list__button'
                 type="button"
                 onClick={() => {

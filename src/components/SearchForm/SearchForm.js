@@ -18,8 +18,9 @@ function SearchForm({
       onPreloader(true);
       handleFindFilms(searchText);
     } else {
-      onHandlePopupOpen(valid.errors['search-input-find'] ? valid.errors['search-input-find']
-        : 'Нужно ввести ключевое слово')
+      onHandlePopupOpen('Нужно ввести ключевое слово')
+      /*onHandlePopupOpen(valid.errors['search-input-find'] ? valid.errors['search-input-find']
+       : 'Нужно ввести ключевое слово')*/
     }
   }
 

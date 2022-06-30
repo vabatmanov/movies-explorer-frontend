@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import EntryWindows from "../EntryWindows/EntryWindows";
 import {useFormWithValidation} from "../../hooks/useFormWithValidation";
 
-function Register({isLocation ,isButton, isEnterError, onRegister}) {
+function Register({isLocation ,isButton, isEnterError, onRegister, isLoggedIn, onNavigate}) {
   const [inputData, setInputData] = useState({email: '', password:'', name:''});
   const valid = useFormWithValidation();
 
@@ -19,6 +19,11 @@ function Register({isLocation ,isButton, isEnterError, onRegister}) {
     }
   }
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      onNavigate('/movies', {replace: true});
+    }
+  },[])
 
   return (
     <EntryWindows isLocation={isLocation} isButton={isButton} onSubmitForm={handleSubmit} isValidForm={valid.isValid}>
