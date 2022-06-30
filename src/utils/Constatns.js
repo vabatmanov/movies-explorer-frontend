@@ -27,6 +27,13 @@ const Constants = {
   COUNT_ADD_COUNT_MOBILE: 2,
   FILM_DURATION: 41,
   MAX_COUNT_FILMS: 1000,
+  EXAMPLE: {
+    'register-input-email':' Например: test@test.ru',
+    'register-input-name':' Например: Иван',
+    'register-input-password':' Например: 12345678',
+    'login-input-email':' Например: test@test.ru',
+    'login-input-password':' Например: 12345678',
+  }
 }
 
 export default Constants;

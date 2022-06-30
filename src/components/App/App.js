@@ -51,18 +51,6 @@ function App() {
         })
         .catch(error => console.log(error))
         .finally(() => {
-          //localStorage.movieSearchText = '';
-          //localStorage.shortMovieFilter = JSON.stringify(false);
-          //localStorage.movieFound = JSON.stringify([]);
-    /*    setMovieFound(localStorage.movieFound?JSON.parse(localStorage.movieFound):[])
-          setShortMovieFilter(localStorage.movieFound?JSON.parse(localStorage.movieFound):false)
-          setFirstLoadMovie(localStorage.firstLoadMovie?JSON.parse(localStorage.firstLoadMovie):false)*/
-
-
-          localStorage.saveMovieSearchText = '';
-          localStorage.shortSaveMovieFilter = JSON.stringify(false);
-          localStorage.saveMovieFound = JSON.stringify([]);
-
           setCheckJwt(true);
         })
     }
@@ -136,6 +124,7 @@ function App() {
         setLoggedIn(false);
         localStorage.clear();
         setSaveMovieList([]);
+        setSaveMovieFound([])
         setMovieFound([])
         setShortMovieFilter(false);
         serCurrentUser({});
@@ -251,18 +240,12 @@ function App() {
   }
 
   function handleFindSaveMovies(searchText) {
-    localStorage.saveMovieFound = JSON.stringify(
+    setSaveMovieFound(
       saveMovieList.filter(item => {
         return ((item.nameRU.toLowerCase()).indexOf(searchText.toLowerCase()) !== -1);
       })
     );
-
-    localStorage.shortSaveMovieFilter = JSON.stringify(shortSaveMovieFilter);
-    setShortSaveMovieFilter(JSON.parse(localStorage.shortSaveMovieFilter));
-    setSaveMovieFound(JSON.parse(localStorage.saveMovieFound));
     setPreloader(false);
-
-    localStorage.saveMovieSearchText = searchText;
   }
 
   return (
@@ -308,7 +291,7 @@ function App() {
                 isSaveMovieList={saveMovieList}
                 isMovieFound={saveMovieFound}
                 onMovieFound={setSaveMovieFound}
-                isMovieSearchText={localStorage.saveMovieSearchText}
+                isMovieSearchText={''}
                 isShortMovieFilter={shortSaveMovieFilter}
                 onShortMovieFilter={setShortSaveMovieFilter}
 

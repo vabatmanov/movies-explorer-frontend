@@ -1,14 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import EntryWindows from "../EntryWindows/EntryWindows";
 import {useFormWithValidation} from "../../hooks/useFormWithValidation";
+import Constants from "../../utils/Constatns";
 
 function Register({isLocation ,isButton, isEnterError, onRegister, isLoggedIn, onNavigate}) {
   const [inputData, setInputData] = useState({email: '', password:'', name:''});
   const valid = useFormWithValidation();
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleChangeInputData (e) {
     valid.handleChange(e);
     setInputData({...inputData,[e.target.id]: e.target.value});
+    createErrorMessage(e);
+  }
+
+  function createErrorMessage(e) {
+    if (e.target.validationMessage !== '') {
+      setErrorMessage( e.target.validationMessage + Constants.EXAMPLE[e.target.name]);
+    } else {
+      setErrorMessage( '');
+    }
   }
 
   function handleSubmit(e) {
@@ -42,9 +53,10 @@ function Register({isLocation ,isButton, isEnterError, onRegister, isLoggedIn, o
       </label>
       <label className='register__label' htmlFor='email'>E-mail
         <input className={`register__input ${valid.errors['register-input-email']?'register__input_error':''}`}
-               type='email'
+               type='text'
                name='register-input-email'
                id='email'
+               pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\.[A-Za-z0-9]{2,})"
                placeholder='Введите E-mail'
                value={inputData.email}
                onChange={handleChangeInputData}
@@ -63,7 +75,7 @@ function Register({isLocation ,isButton, isEnterError, onRegister, isLoggedIn, o
                required
         />
       </label>
-      {isEnterError?<span className='register__error-text'>Что-то пошло не так...</span>:''}
+      {errorMessage || isEnterError?<span className='register__error-text'>{errorMessage?errorMessage:'Что-то пошло не так...'}</span>:''}
     </EntryWindows>
   );
 }

@@ -30,7 +30,14 @@ function SearchForm({
   }
 
   useEffect(() => {
-    setSearchText(isMovieSearchText)
+    if (isMovieSearchText !== undefined) {
+      setSearchText(isMovieSearchText);
+    } else {
+      setSearchText('');
+    }
+    if (isLocation === '/saved-movies') {
+      onShortMovieFilter(false);
+    }
   }, [isMovieSearchText, isLocation])
 
 
