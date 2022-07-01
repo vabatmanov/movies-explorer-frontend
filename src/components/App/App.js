@@ -33,7 +33,7 @@ function App() {
   const [saveMovieList, setSaveMovieList] = useState([]); //список фильмов в закладках
 
   const [movieFound, setMovieFound] = useState(localStorage.movieFound?JSON.parse(localStorage.movieFound):[]); //найденные фильмы
-  const [shortMovieFilter, setShortMovieFilter] = useState(localStorage.shortMovieFilter?JSON.parse(localStorage.shortMovieFilter):false); //состояние checkbox movie
+  const [shortMovieFilter, setShortMovieFilter] = useState(localStorage.shortMovieFilter ?JSON.parse(localStorage.shortMovieFilter):false); //состояние checkbox movie
   const [firstLoadMovie, setFirstLoadMovie] = useState(localStorage.firstLoadMovie?JSON.parse(localStorage.firstLoadMovie):false); //первая загрузка Movie была ?
 
   const [saveMovieFound, setSaveMovieFound] = useState([]); //найденные фильмы в закладках
@@ -59,6 +59,19 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
+      if (localStorage.shortMovieFilter === undefined) {
+        localStorage.shortMovieFilter = JSON.stringify(false);
+      }
+      if (localStorage.firstLoadMovie === undefined) {
+        localStorage.firstLoadMovie = JSON.stringify(false);
+      }
+      if (localStorage.movieFound === undefined) {
+        localStorage.movieFound = JSON.stringify([]);
+      }
+      if (localStorage.movieSearchText === undefined) {
+        localStorage.movieSearchText = '';
+      }
+
       Promise.all([api.getUserInfo(), api.getMovies(), MoviesApi.getMovies()])
         .then(([userData, saveMovie, movie]) => {
           serCurrentUser({...userData});
@@ -69,7 +82,7 @@ function App() {
           })
 
           localStorage.movie = JSON.stringify(newMovie);
-          localStorage.saveMovie = JSON.stringify(saveMovie);
+          //localStorage.saveMovie = JSON.stringify(saveMovie);
 
           setMovieList(newMovie);
           setSaveMovieList(saveMovie)
@@ -126,6 +139,7 @@ function App() {
         setSaveMovieList([]);
         setSaveMovieFound([])
         setMovieFound([])
+        setFirstLoadMovie(false);
         setShortMovieFilter(false);
         serCurrentUser({});
         navigate('./', {replace: true});
@@ -177,6 +191,7 @@ function App() {
     api.addMovie(card)
       .then((data) => {
         setSaveMovieList([...saveMovieList, {...data}])
+        setSaveMovieFound([...saveMovieList, {...data}]);
       })
       .catch((error) => {
         handlePopupOpen(`${error}, лайк не установлен.`);
