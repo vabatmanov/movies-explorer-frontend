@@ -12,7 +12,8 @@ function Header(props) {
 
   return (
     <header className={`header ${(props.loggedIn && location.pathname !== '/')?'':'header_theme_pink'}`}>
-    <img className='logo' src={Logo}  alt='Логотип' />
+
+    <Link className='header__logo-link' to='/'><img className='logo' src={Logo}  alt='Логотип' /></Link>
       {props.loggedIn ? (
           <>
             <Navigation />

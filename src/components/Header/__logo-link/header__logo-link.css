@@ -1,0 +1,11 @@
+.header__logo-link {
+  line-height: 0;
+}
+
+.header__logo-link:hover {
+  opacity: 0.7;
+}
+
+.header__logo-link:active {
+  box-shadow: black;
+}

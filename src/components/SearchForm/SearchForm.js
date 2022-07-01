@@ -1,20 +1,62 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FindLogo from '../../images/find-logo.svg';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import {useFormWithValidation} from "../../hooks/useFormWithValidation";
 
-function SearchForm() {
+function SearchForm({
+                      isMovieSearchText, isShortMovieFilter, onFirstLoadMovie, onPreloader,
+                      handleFindFilms, onShortMovieFilter, onHandlePopupOpen, isLocation
+                    }) {
+
+  const [searchText, setSearchText] = useState('')
+  const valid = useFormWithValidation();
+
+  function handleSubmitForm(e) {
+    e.preventDefault();
+    if (valid.isValid) {
+      onFirstLoadMovie(true);
+      onPreloader(true);
+      handleFindFilms(searchText);
+    } else {
+      onHandlePopupOpen('Нужно ввести ключевое слово')
+      /*onHandlePopupOpen(valid.errors['search-input-find'] ? valid.errors['search-input-find']
+       : 'Нужно ввести ключевое слово')*/
+    }
+  }
+
+  function onChangeSearchText(e) {
+    valid.handleChange(e);
+    setSearchText(e.target.value);
+  }
+
+  useEffect(() => {
+    if (isMovieSearchText !== undefined) {
+      setSearchText(isMovieSearchText);
+    } else {
+      setSearchText('');
+    }
+    if (isLocation === '/saved-movies') {
+      onShortMovieFilter(false);
+    }
+  }, [isMovieSearchText, isLocation])
+
+
   return (
-    <form className='search-form'>
+    <form className='search-form' onSubmit={handleSubmitForm} noValidate>
       <div className='search-form__container'>
         <img className='search-form__logo' src={FindLogo} alt='Изображение логотипа строки поиска'/>
-        <input type="text" className='search-form__input-find' name="find" required
-               minLength={2}
+        <input type="text" className='search-form__input-find'
+               name="search-input-find"
                maxLength={40}
+               required
                placeholder='Фильм'
-               /*value={name}*/
-               /*onChange={handleChangeName}*//>
-        <button className='search-form__button' type='submit'></button>
-        <FilterCheckbox/>
+               value={searchText}
+               onChange={onChangeSearchText}/>
+        <button className='search-form__button' type='button' onClick={handleSubmitForm}></button>
+        <FilterCheckbox
+          isShortMovieFilter={isShortMovieFilter}
+          onShortMovieFilter={onShortMovieFilter}
+        />
       </div>
     </form>
   );

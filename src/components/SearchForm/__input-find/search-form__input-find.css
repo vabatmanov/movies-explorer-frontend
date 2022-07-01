@@ -8,6 +8,10 @@
   height: 22px;
 }
 
+.search-form__input-find:focus {
+  outline: none;
+}
+
 @media screen and (max-width: 767px) {
   .search-form__input-find {
     font: normal 400 14px/20px Inter, Arial, sans-serif;
